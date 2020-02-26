@@ -4,12 +4,12 @@ const mongoose = require('mongoose');
 const blogSchema = new mongoose.Schema({
     title: {
         type:String,
-        maxlength: 50,
+        maxlength: 156,
         required: true
     },
     text:{
      type:String,
-     maxlength: 256,
+     maxlength: 500,
      required: true
     },
     likes: 0,
