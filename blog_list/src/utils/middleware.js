@@ -37,7 +37,7 @@ const errorHandler = (error, request, response, next) =>{
         )
     }
     else if (error.name === 'ConnectionError'){
-        response.status(5000).send({
+        response.status(500).send({
             'error': 'Error Connecting to Database'
         })
     }
@@ -51,7 +51,6 @@ const errorHandler = (error, request, response, next) =>{
                 'error':'validation error'
         })
     }
-
     next(error);
 };
 

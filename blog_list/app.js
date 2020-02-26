@@ -4,6 +4,7 @@ const bodyParser = require('body-parser');
 const blogsRouter = require('./src/controllers/slashBlogsRouter');
 const userRouter = require('./src/controllers/slashUsersRouter');
 const loginRouter = require('./src/controllers/loginRouter');
+const viewsRouter = require('./src/controllers/slashViews');
 const cors = require('cors');
 const mongoose = require('mongoose');
 const middleware = require('./src/utils/middleware');
@@ -15,13 +16,14 @@ mongoose.connect(config.MONGODB_URI, { useNewUrlParser: true })
 
 const app = express();
 app.use(cors());
-app.use(express.static('build'));
+// app.use(express.static(__dirname + '/build'));
 app.use(bodyParser.json());
 app.use(middleware.tokenExtractor)
 app.use(middleware.requestLogger);
 app.use('/api/login', loginRouter);
 app.use('/api/blogs', blogsRouter);
 app.use('/api/users', userRouter);
+app.use('/api/pageviews',viewsRouter);
 
 app.use(middleware.errorHandler);
 
