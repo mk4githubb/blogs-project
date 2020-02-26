@@ -5,6 +5,7 @@ import notificationTextReducer from "../reducers/notificationTextReducer";
 import searchTextReducer from "../reducers/searchTextReducer";
 import thunk from "redux-thunk";
 import usersReducer from "../reducers/usersReducer";
+import userSearchTextReducer from "../reducers/userSearchReducer";
 
 
 const combinedReducer = combineReducers({
@@ -12,7 +13,8 @@ const combinedReducer = combineReducers({
    loggedInUser:loggedInUseReducer,
    notificationText:notificationTextReducer,
    searchText:searchTextReducer,
-   users:usersReducer
+   users:usersReducer,
+   userSearchText:userSearchTextReducer
 });
 
 const store = createStore(combinedReducer, applyMiddleware(thunk));

@@ -4,7 +4,7 @@ import App from './App'
 import {Provider} from 'react-redux'
 import store from "./store/store";
 
-import LayoutLogic from "./new/LayoutLogic";
+import LayoutLogic from "./components/LayoutLogic";
 
 
 ReactDOM.render(<Provider store={store}>

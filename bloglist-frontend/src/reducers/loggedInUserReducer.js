@@ -1,4 +1,5 @@
 import React from 'react'
+import {ac_setNotification_Text} from "./notificationTextReducer";
 
 const loggedInUseReducer = (state = null, action) => {
     switch (action.type) {
@@ -36,41 +37,23 @@ export const ac_login = (db, data) => {
             const returnedObject = await db.post(data);
             const returnResultData = returnedObject.data;
             window.localStorage.setItem('token', JSON.stringify(returnResultData));
-
-            dispatch({
-                type: 'setUser',
-                data: returnedObject
-            });
-
-            dispatch({
-                type: 'setNotificationText',
-                data: 'Login Successful'
-            });
+            dispatch(ac_setLoggedInUserFromLS(returnedObject));
+            dispatch(ac_setNotification_Text('Login Successful'));
 
         } catch (exception) {
-            return dispatch => dispatch({
-                type: 'setNotificationText',
-                data: 'Error Logging in'
-            })
+            dispatch(ac_setNotification_Text('Error Logging in. Invalid username or password'))
+
         }
     }
 };
-
 
 export const ac_createUser = (db, newUser) => {
     return async dispatch => {
         try {
             await db.post(newUser);
-            dispatch({
-                type: 'setNotificationText',
-                data: 'User Created Please Log in'
-            });
-            console.log('user Created')
+            dispatch(ac_setNotification_Text('User Created.'));
         } catch (exception) {
-            dispatch({
-                type: 'setNotificationText',
-                data: 'Error Creating User'
-            })
+            dispatch(ac_setNotification_Text('Error Creating user'));
         }
     }
 };

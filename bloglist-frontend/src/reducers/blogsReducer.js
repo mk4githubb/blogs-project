@@ -1,3 +1,6 @@
+import {ac_setNotification_Text} from "./notificationTextReducer";
+import {push} from 'react-router-redux'
+import useResource from "../hooks/useResources";
 
 const blogsReducer = (state = [], action) => {
 
@@ -19,9 +22,10 @@ const blogsReducer = (state = [], action) => {
     }
 };
 
-export const ac_InitBlogs =  (db)=> {
+export const ac_InitBlogs =  ()=> {
     return async (dispatch) => {
         try {
+            let db = useResource('http://localhost:3003/api/blogs');
             const received = await db.getAll();
             const blogs = received.data;
             dispatch ({
@@ -36,55 +40,66 @@ export const ac_InitBlogs =  (db)=> {
     }
 };
 
-export const ac_createBlog = (db, config, newBlog)=> {
+export const ac_createBlog = (config, newBlog, history)=> {
 
     return async dispatch => {
-        try {
+        try{
+            let db = useResource('http://localhost:3003/api/blogs');
             const receivedData = await db.post(newBlog, config);
 
             dispatch({
-                    type:'addBlog',
-                    data: receivedData.data
-                });
-        } catch (exception) {
-            dispatch({
-                type:'setNotification',
-                data: 'Error adding blog'
+                type:'addBlog',
+                data: receivedData.data
             });
+
+            dispatch(ac_setNotification_Text('Blog created. Taking you to your new blog'));
+            setTimeout(()=>history.push(`/blogs/${receivedData.data.id}`), 1500);
+
         }
+        catch (exception) {
+            dispatch(ac_setNotification_Text('Error creating the blog'));
+        }
+
     }
 };
 
 
-export const ac_likeBlog =  (db, blog)=> {
+export const ac_likeBlog =  (blog)=> {
 
     return async dispatch => {
         try{
+            let db = useResource('http://localhost:3003/api/blogs');
             const newBlog = {...blog, likes: blog.likes + 1};
             db.put(blog.id, newBlog);
 
             dispatch({
                 type:'likeBlog',
                 data: blog.id
-            })
+            });
+
+            dispatch(ac_setNotification_Text('You liked the blog'));
 
         } catch (exception) {
-            console.log('Error in Put Request')
+            dispatch(ac_setNotification_Text('Error liking blog'));
         }
     }
 };
 
-export const ac_deleteBlog = (db, config, id)=>{
+export const ac_deleteBlog = (config, id, history)=>{
     return async dispatch => {
+        let db = useResource('http://localhost:3003/api/blogs');
         try {
             await db.del(id, config);
+            dispatch(ac_setNotification_Text('Blog deleted. Taking you back to homepage.'));
+            setTimeout(()=> history.push('/home'),1000);
 
             dispatch({
                 type:'deleteBlog',
                 data: id
-            })
+            });
+
         }catch (exception) {
-           console.log('Error Deleting a blog')
+           dispatch(ac_setNotification_Text('Error deleting blog'));
         }
     }
 };
