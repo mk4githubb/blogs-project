@@ -12,7 +12,7 @@ import NotificationDisplayer from "../components/NofiticationDisplayer";
 
 const RouteLogin = (props) => {
 
-    const login = useResource('http://localhost:3003/api/login');
+    const login = useResource('/api/login');
     const username = useFormHook('text');
     const password = useFormHook('password');
 

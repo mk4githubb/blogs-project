@@ -19,8 +19,8 @@ import RouteCreateBlog from "./r-createBlog/r-createBlog";
 
 const LayoutLogic = (props) => {
 
-    const blogsDB = useResource('http://localhost:3003/api/blogs');
-    const usersDB = useResource('http://localhost:3003/api/users');
+    const blogsDB = useResource('/api/blogs');
+    const usersDB = useResource('/api/users');
 
     useEffect(() => {
         const alreadyLoggedInUser = window.localStorage.getItem('token');

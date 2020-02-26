@@ -25,7 +25,7 @@ const blogsReducer = (state = [], action) => {
 export const ac_InitBlogs =  ()=> {
     return async (dispatch) => {
         try {
-            let db = useResource('http://localhost:3003/api/blogs');
+            let db = useResource('/api/blogs');
             const received = await db.getAll();
             const blogs = received.data;
             dispatch ({
@@ -44,7 +44,7 @@ export const ac_createBlog = (config, newBlog, history)=> {
 
     return async dispatch => {
         try{
-            let db = useResource('http://localhost:3003/api/blogs');
+            let db = useResource('/api/blogs');
             const receivedData = await db.post(newBlog, config);
 
             dispatch({
@@ -68,7 +68,7 @@ export const ac_likeBlog =  (blog)=> {
 
     return async dispatch => {
         try{
-            let db = useResource('http://localhost:3003/api/blogs');
+            let db = useResource('/api/blogs');
             const newBlog = {...blog, likes: blog.likes + 1};
             db.put(blog.id, newBlog);
 
@@ -87,7 +87,7 @@ export const ac_likeBlog =  (blog)=> {
 
 export const ac_deleteBlog = (config, id, history)=>{
     return async dispatch => {
-        let db = useResource('http://localhost:3003/api/blogs');
+        let db = useResource('/api/blogs');
         try {
             await db.del(id, config);
             dispatch(ac_setNotification_Text('Blog deleted. Taking you back to homepage.'));

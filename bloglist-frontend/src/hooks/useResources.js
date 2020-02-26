@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 // url is the full url to a resource
-// const baseUrl = 'http://localhost:3003/api/blogs'
+// const baseUrl = '/api/blogs'
 
 const useResource = (url) => {
 

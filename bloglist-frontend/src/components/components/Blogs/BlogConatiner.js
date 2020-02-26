@@ -8,7 +8,7 @@ import NotificationDisplayer from "../NofiticationDisplayer";
 
 const BlogsContainer = (props)=> {
 
-    const blogsDB = useResource('http://localhost:3003/api/blogs');
+    const blogsDB = useResource('/api/blogs');
     const [page , setPage] = useState(1);
     let blogs = props.blogs;
 

@@ -24,7 +24,7 @@ const OneBlogURL = (props) => {
 };
 
 const CardDisplayLogic = ({blog, likeBlog}) => {
-    const db = useResource('localHost:3003/blogs');
+    const db = useResource('/');
     const likeHandler= () => likeBlog(blog);
 
     if(!blog){
