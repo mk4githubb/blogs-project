@@ -4,7 +4,6 @@ import {Button, Container, Form, Grid, Header, Icon, Message, Segment} from "sem
 import {connect} from 'react-redux'
 import {ac_setNotification_Text} from "../../reducers/notificationTextReducer";
 import {ac_login} from "../../reducers/loggedInUserReducer";
-import useResource from "../../hooks/useResources";
 import useFormHook from "../../hooks/formHook";
 import {Link} from "react-router-dom";
 import NotificationDisplayer from "../components/NofiticationDisplayer";
@@ -13,7 +12,6 @@ import {ac_incrementPageViews} from "../../reducers/pageViewsReducer";
 
 const RouteLogin = (props) => {
 
-    const login = useResource('/api/login');
     const username = useFormHook('text');
     const password = useFormHook('password');
 
@@ -34,7 +32,7 @@ const RouteLogin = (props) => {
         };
 
         try {
-            props.login(login, requestObject);
+            props.login(requestObject);
             username.clear();
             password.clear();
         } catch (exception) {
@@ -97,7 +95,7 @@ const RouteLogin = (props) => {
 const mapDispatchToProps = (dispatch) => {
     return {
         setNotificationText: (data) => dispatch(ac_setNotification_Text(data)),
-        login: (db, data) => dispatch(ac_login(db, data)),
+        login: (data) => dispatch(ac_login(data)),
         incrementPageViews: () => dispatch(ac_incrementPageViews())
     }
 };

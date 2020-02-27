@@ -20,7 +20,7 @@ const RouteUsers = (props) => {
                     <Header as={'h2'} content={'Search Users'} color={'teal'}/>
                     <Input
                         icon={{name: 'search', circular: true, link: true}}
-                        placeholder='Search...' value={props.userSearchText?props.userSearchText:''} fluid
+                        placeholder='Search...' value={props.userSearchText ? props.userSearchText : ''} fluid
                         onChange={event => props.setUserSearchText(event.target.value)}
                     />
                 </Container>

@@ -2,7 +2,6 @@ import React, {useEffect} from 'react'
 import {Container, Grid, Header, Label, Segment} from "semantic-ui-react";
 import MyCard from "./MyCard";
 import MyProjects from "./MyProjects";
-import WhatElseToWrite from "./WhatElseToWrite";
 import MasterContainer from "../components/containers/MasterContainer";
 import {ac_incrementPageViews} from "../../reducers/pageViewsReducer";
 import {connect} from "react-redux";
@@ -28,10 +27,17 @@ const About = (props) => {
                         <MyProjects/>
                     </Grid.Column>
                     <Grid.Column width={16}>
-                        <Segment padded>
+                        <Segment padded secondary style={{height: '30vh'}}>
                             <Label attached='top'>What else?</Label>
                             <Header as={'h2'} content={'ummm... What else would do you like to know?'}/>
-                            <WhatElseToWrite/>
+                            <Header as={'h3'} content={'Try deciphering the line below to find the hidden message!'}/>
+                            <Container text>
+                                <Segment secondary>
+                                    <Header as={'h3'}
+                                            content={`'Lorem ipsum dolor sit amet, consectetur adipisicing elit Nam, odio.'`}
+                                            color={'teal'}/>
+                                </Segment>
+                            </Container>
                         </Segment>
                     </Grid.Column>
                 </Grid>

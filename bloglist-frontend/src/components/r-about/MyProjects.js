@@ -10,9 +10,9 @@ const MyProjects = () => {
                 <List.Content>
                     <List.Header as='a' href={'https://api-mk.herokuapp.com/'} target={'_blank'}>API for this
                         website</List.Header>
-                    <List.Description as='a'>API for this project is set up Heroku. Try sending HTTP requests to - the
-                        link above + `/api/blogs` or `/api/users` or `/api/login` or `/api/users/:id`
-                        ...</List.Description>
+                    <List.Description as='a'>API for this website is set up at `https://api-mk.herokuapp.com/api/` and
+                        supports get , post, put and delete requests on the routes `/login` , `/blogs` and
+                        `/users`</List.Description>
                 </List.Content>
             </List.Item>
             <List.Item>
@@ -20,7 +20,8 @@ const MyProjects = () => {
                 <List.Content>
                     <List.Header as='a' href={'https://phonebook-mk.herokuapp.com/'} target={'_blank'}>PhoneBook
                         Application</List.Header>
-                    <List.Description as='a'>My first ever web app</List.Description>
+                    <List.Description as='a'>The first webpage I built. It supports creation and deletion of the entered
+                        contacts. It is connected to a database, so changes are persistent.</List.Description>
                 </List.Content>
             </List.Item>
             <List.Item>
@@ -28,7 +29,8 @@ const MyProjects = () => {
                 <List.Content>
                     <List.Header as='a' href={'https://github.com/monykaushik17/Job-Application-Tracker'}
                                  target={'_blank'}>Due Date Tracker</List.Header>
-                    <List.Description as='a'>Built to track my assignment dates and job applications</List.Description>
+                    <List.Description as='a'>I built this JavaFX application to track my university assignments and
+                        other applications. </List.Description>
                 </List.Content>
             </List.Item>
             <List.Item>

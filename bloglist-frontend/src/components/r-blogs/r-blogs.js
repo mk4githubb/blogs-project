@@ -18,7 +18,7 @@ const RouteBlogs = (props) => {
                 <Container>
                     <Header as={'h2'} content={'Search Blogs'} color={'teal'}/>
                     <Input icon={{name: 'search', circular: true, link: true}} placeholder='Search...'
-                           value={props.searchText?props.searchText:''} fluid
+                           value={props.searchText ? props.searchText : ''} fluid
                            onChange={(event) => props.setSearchText(event.target.value)}/>
                 </Container>
             </Segment>

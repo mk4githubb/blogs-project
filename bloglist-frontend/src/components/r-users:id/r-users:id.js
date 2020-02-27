@@ -20,7 +20,7 @@ const RoutesOneUser = (props) => {
         if (page === 1) {
             return props.user.blogPosts.slice(0, 10)
         }
-        return props.user.blogPostss.slice(10 * (page - 1), 20 * (page - 1));
+        return props.user.blogPosts.slice(10 * (page - 1), 20 * (page - 1));
     };
 
     const listItems = () => {
@@ -30,7 +30,7 @@ const RoutesOneUser = (props) => {
                 <Header as={'h4'} content={"The user hasn't published any blogs"} style={{marginTop: '4em'}}/>
             </Container>
         }
-        return PaginationBlogPostsArraySlicer().map(i => <List.Item>
+        return PaginationBlogPostsArraySlicer().map(i => <List.Item key={i.id}>
             <List.Icon name='newspaper' size='large' verticalAlign='middle'/>
             <List.Content>
                 <List.Header as={Link} to={`/blogs/${i.id}`}>{i.title}</List.Header>

@@ -8,7 +8,7 @@ export const ac_setNotification_Text = (text) => {
         setTimeout(() => dispatch({
             type: 'setNotificationText',
             data: null
-        }), 5000);
+        }), 2000);
     }
 };
 

@@ -2,12 +2,10 @@ import React, {useState} from 'react'
 import {Card, Container, Grid, GridRow, Header, Image, Pagination, Segment} from "semantic-ui-react";
 import OneBlog from "./OneBlog";
 import {connect} from "react-redux";
-import useResource from "../../../hooks/useResources";
 
 
 const BlogsContainer = (props) => {
 
-    const blogsDB = useResource('/api/blogs');
     const [page, setPage] = useState(1);
     let blogs = props.blogs;
 
@@ -52,9 +50,9 @@ const BlogsContainer = (props) => {
     }
 
     return (
-        <Segment secondary>
-            <Card.Group stackable>
-                {PaginationArraySlicer().map(i => <OneBlog key={i.id} db={blogsDB} blog={i}/>)}
+        <Segment secondary style={{minHeight: '70vh'}}>
+            <Card.Group stackable centered>
+                {PaginationArraySlicer().map(i => <OneBlog key={i.id} blog={i}/>)}
             </Card.Group>
             <Grid centered>
                 <GridRow>

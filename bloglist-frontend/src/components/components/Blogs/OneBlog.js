@@ -15,7 +15,8 @@ const OneBlog = (props) => {
             <Card.Content textAlign={'left'}>
                 <Image floated={'right'} size={'mini'} src={require('../../../resources/blogIcon.png')}/>
                 <Card.Header><Link to={`/blogs/${props.blog.id}`}>{props.blog.title}</Link></Card.Header>
-                <Card.Meta>by <Link to={`/users/${props.blog.author.id}`}>{props.blog.author.username}</Link></Card.Meta>
+                <Card.Meta>by <Link
+                    to={`/users/${props.blog.author.id}`}>{props.blog.author.username}</Link></Card.Meta>
                 <Card.Description>
                     {props.blog.text.length < 300 ? props.blog.text : props.blog.text.substring(0, 155) + '...'}
                 </Card.Description>

@@ -5,7 +5,6 @@ import {ac_setNotification_Text} from "../../reducers/notificationTextReducer";
 import {ac_createUser} from "../../reducers/loggedInUserReducer";
 import {connect} from "react-redux";
 import useFormHook from "../../hooks/formHook";
-import useResource from "../../hooks/useResources";
 import {Link, withRouter} from "react-router-dom";
 import NotificationDisplayer from "../components/NofiticationDisplayer";
 import {compose} from "redux";
@@ -16,7 +15,6 @@ const RouteSignup = (props) => {
 
     const username = useFormHook('text');
     const password = useFormHook('password');
-    const usersDB = useResource('https://api-mk.herokuapp.com/api/users');
 
     useEffect(() => {
         props.incrementPageViews()
@@ -46,11 +44,9 @@ const RouteSignup = (props) => {
         };
 
         try {
-            props.createUser(usersDB, newUser);
-            props.setNotificationText(`User ${username.value} Created, Please Login. Redirecting you to login page.`);
+            props.createUser(newUser, props.history);
             username.clear();
             password.clear();
-            setTimeout(() => props.history.push('/login'), 2000);
         } catch (exception) {
             props.setNotificationText('Error, Creating user. Please try again.')
         }
@@ -68,7 +64,8 @@ const RouteSignup = (props) => {
                                 </Header>
                                 <Form size='large' onSubmit={createUserHandler}>
                                     <Segment stacked>
-                                        <Form.Input fluid value={username} icon='user' iconPosition='left' placeholder='username'
+                                        <Form.Input fluid value={username.value} icon='user' iconPosition='left'
+                                                    placeholder='username'
                                                     onChange={username.update}/>
                                         <Form.Input
                                             fluid
@@ -77,7 +74,7 @@ const RouteSignup = (props) => {
                                             placeholder='Password'
                                             type='password'
                                             onChange={password.update}
-                                            value={password}
+                                            value={password.value}
                                         />
                                         <Button color='teal' fluid size='large'>
                                             Sign up
@@ -106,7 +103,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
     return {
         setNotificationText: (data) => dispatch(ac_setNotification_Text(data)),
-        createUser: (db, newUser) => dispatch(ac_createUser(db, newUser)),
+        createUser: (newUser, history) => dispatch(ac_createUser(newUser, history)),
         incrementPageViews: () => dispatch(ac_incrementPageViews())
     }
 };

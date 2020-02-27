@@ -51,7 +51,7 @@ export const ac_createBlog = (config, newBlog, history) => {
             });
 
             dispatch(ac_setNotification_Text('Blog created. Taking you to your new blog'));
-            setTimeout(() => history.push(`/blogs/${receivedData.data.id}`), 1500);
+            setTimeout(() => history.push(`/blogs/${receivedData.data.id}`), 2000);
 
         } catch (exception) {
             dispatch(ac_setNotification_Text('Error creating the blog'));

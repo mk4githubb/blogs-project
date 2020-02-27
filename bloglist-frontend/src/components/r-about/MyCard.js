@@ -2,13 +2,13 @@ import {Card, Grid, Icon, List} from "semantic-ui-react";
 import React from "react";
 
 
-const MyCard = ({mobile}) => {
+const MyCard = () => {
 
     const extra = () => {
 
         return (
             <Grid centered>
-                <List horizontal size={'massive'}>
+                <List horizontal size={'massive'} verticalAlign={'middle'} divided>
                     <List.Item as={'a'} href={'https://github.com/monykaushik17'} target={'_blank'}>
                         <Icon name={'github'}/>
                         GitHub
@@ -24,9 +24,9 @@ const MyCard = ({mobile}) => {
     return (
         <Card
             image={require('../../resources/programmer.png')}
-            header='back_slash'
+            header='Mony Kaushik'
             meta='developer in the making'
-            description='Amateur Programmer, Structural Engineer, Atheist, Piscean, Swimmer'
+            description='Amateur Programmer , Structural Engineer'
             color={'orange'}
             raised
             centered

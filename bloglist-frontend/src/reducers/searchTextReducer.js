@@ -11,7 +11,7 @@ export const ac_setSearch_Text = (text) => {
 const searchTextReducer = (state = null, action) => {
     switch (action.type) {
         case 'setSearchText':
-            if (action.data ==='') {
+            if (action.data === '') {
                 return state = null;
             }
             state = action.data;

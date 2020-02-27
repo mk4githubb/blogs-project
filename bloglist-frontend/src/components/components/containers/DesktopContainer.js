@@ -35,15 +35,14 @@ const DesktopContainer = (props) => {
                         <Dropdown.Item onClick={() => props.logout()}>Logout</Dropdown.Item>
                     </Dropdown.Menu>
                 </Dropdown>
-
             )
         }
 
         return (
             <Button.Group>
-                <Button as={Link} to={'/login'}>Login</Button>
+                <Button as={Link} to={'/login'} primary>Login</Button>
                 <Button.Or/>
-                <Button as={Link} to={'/signup'}>Sign Up</Button>
+                <Button as={Link} to={'/signup'} secondary>Sign Up</Button>
             </Button.Group>
         )
     };
@@ -72,8 +71,10 @@ const DesktopContainer = (props) => {
                             <Grid.Column>
                                 <Header inverted as={'h3'} content={'Links'}/>
                                 <List>
-                                    <List.Item><a href={'https://github.com/monykaushik17'} target={'_blank'} rel="noopener noreferrer">GitHub</a></List.Item>
-                                    <List.Item><a href={'https://www.linkedin.com/in/mony-kaushik-62b96118b/'} target={'_blank'} rel="noopener noreferrer">LinkedIn</a></List.Item>
+                                    <List.Item><a href={'https://github.com/monykaushik17'} target={'_blank'}
+                                                  rel="noopener noreferrer">GitHub</a></List.Item>
+                                    <List.Item><a href={'https://www.linkedin.com/in/mony-kaushik-62b96118b/'}
+                                                  target={'_blank'} rel="noopener noreferrer">LinkedIn</a></List.Item>
                                 </List>
                             </Grid.Column>
                             <Grid.Column>

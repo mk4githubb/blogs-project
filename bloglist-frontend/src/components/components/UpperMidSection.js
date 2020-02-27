@@ -19,7 +19,7 @@ const UpperMidSection = (props) => {
                                 <Icon name='search'/>
                                 Find a blog
                             </Header>
-                            <Input fluid placeholder='Search blogs...' value={props.searchText}
+                            <Input fluid placeholder='Search blogs...' value={props.searchText ? props.searchText : ''}
                                    onChange={event => props.setSearchText(event.target.value)}/>
                         </Grid.Column>
                         <Divider vertical={getWidth() > Responsive.onlyMobile.maxWidth}>Or</Divider>
@@ -49,7 +49,8 @@ const UpperMidSection = (props) => {
             <Divider horizontal section/>
             <Container style={{width: '50%'}}>
                 <Input fluid icon={{name: 'search', circular: true, link: true}} placeholder='Search blogs...'
-                       value={props.searchText?props.searchText:''} onChange={event => props.setSearchText(event.target.value)}/>
+                       value={props.searchText ? props.searchText : ''}
+                       onChange={event => props.setSearchText(event.target.value)}/>
             </Container>
         </Segment>
     )

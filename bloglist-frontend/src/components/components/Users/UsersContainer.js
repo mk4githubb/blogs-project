@@ -7,7 +7,7 @@ const UsersContainer = (props) => {
     const [page, setPage] = useState(1);
     let users = props.users;
 
-    if (props.userSearchText) {
+    if (props.userSearchText != null) {
         users = users.filter(i => i.username.toLowerCase().includes(props.userSearchText.toLowerCase()));
     }
 
@@ -18,13 +18,13 @@ const UsersContainer = (props) => {
         return users.slice(10 * (page - 1), 20 * (page - 1));
     };
 
-    if (!props.users || users.length === 0) {
+    if (!users || users.length === 0) {
 
         if (props.users !== 0 && users.length === 0) {
             return (
                 <Segment style={{height: '70vh'}}>
                     <Container>
-                        <Header as={'h2'} content={'No such user'}/>
+                        <Header as={'h2'} content={'No users found'}/>
                     </Container>
                 </Segment>
             )
@@ -47,8 +47,8 @@ const UsersContainer = (props) => {
     }
 
     return (
-        <Segment>
-            <Card.Group stackable doubling>
+        <Segment style={{minHeight: '70vh'}}>
+            <Card.Group stackable doubling centered>
                 {PaginationArraySlicer().map(i => <OneUser key={i.id} user={i}/>)}
             </Card.Group>
             <Grid centered>
