@@ -1,28 +1,30 @@
 import React, {useState} from 'react'
 import {
-    Responsive,
-    Sidebar,
-    Menu,
-    Segment,
-    Header,
     Button,
     Container,
+    Grid,
+    GridRow,
+    Header,
     Icon,
-    Statistic, Grid, Image, List, GridRow,
+    Image,
+    List,
+    Menu,
+    Responsive,
+    Segment,
+    Sidebar,
 } from "semantic-ui-react";
 import {getWidth} from "./DesktopContainer";
-import {Link} from "react-router-dom";
-import {withRouter} from "react-router-dom";
+import {Link, withRouter} from "react-router-dom";
 import {ac_logout} from "../../../reducers/loggedInUserReducer";
 import {connect} from "react-redux";
 
 const MobileHomePageContainer = (props) => {
     const [visible, setVisible] = useState(false);
 
-    return(
-        <Responsive  as={Sidebar.Pushable}
-                     getWidth={getWidth}
-                     maxWidth={Responsive.onlyMobile.maxWidth}>
+    return (
+        <Responsive as={Sidebar.Pushable}
+                    getWidth={getWidth}
+                    maxWidth={Responsive.onlyMobile.maxWidth}>
             <Sidebar
                 as={Menu}
                 animation='push'
@@ -45,7 +47,7 @@ const MobileHomePageContainer = (props) => {
                 <Menu.Item as={Link} to={'/blogs'}> Blogs </Menu.Item>
                 <Menu.Item as={Link} to={'/users'}> Users </Menu.Item>
                 {props.loggedInUser ?
-                    <Menu.Item as={Link} onClick={() => props.logout()}> Logout </Menu.Item>:
+                    <Menu.Item as={Link} onClick={() => props.logout()}> Logout </Menu.Item> :
                     <Menu.Item as={Link} to={'/login'}> Login/Sign Up </Menu.Item>
                 }
 
@@ -54,10 +56,11 @@ const MobileHomePageContainer = (props) => {
                 <Segment inverted textAlign='center' vertical>
                     <Container>
                         <Menu>
-                            <Menu.Item position={'left'}> <Icon name={'sidebar'} onClick={() => setVisible(!visible)}/> </Menu.Item>
+                            <Menu.Item position={'left'}> <Icon name={'sidebar'} onClick={() => setVisible(!visible)}/>
+                            </Menu.Item>
                             <Menu.Item position={'right'}>
-                                { props.loggedInUser?
-                                    <Icon name={'arrow left'} onClick={()=> props.history.goBack()}/>:
+                                {props.loggedInUser ?
+                                    <Icon name={'arrow left'} onClick={() => props.history.goBack()}/> :
                                     <Button.Group>
                                         <Button as={Link} to={'/login'}>Login</Button>
                                         <Button.Or/>
@@ -75,13 +78,13 @@ const MobileHomePageContainer = (props) => {
                             <Grid.Column>
                                 <Header inverted as={'h3'} content={'Links'}/>
                                 <List>
-                                    <List.Item><a href={'https://github.com/monykaushik17'} target={'_blank'}>GitHub</a></List.Item>
-                                    <List.Item><a href={'https://www.linkedin.com/in/mony-kaushik-62b96118b/'} target={'_blank'}>LinkedIn</a></List.Item>
+                                    <List.Item><a href={'https://github.com/monykaushik17'} target={'_blank'} rel="noopener noreferrer">GitHub</a></List.Item>
+                                    <List.Item><a href={'https://www.linkedin.com/in/mony-kaushik-62b96118b/'} target={'_blank'} rel="noopener noreferrer">LinkedIn</a></List.Item>
                                 </List>
                             </Grid.Column>
-                            <Grid.Column >
+                            <Grid.Column>
                                 <Header inverted as={'h3'}>
-                                    <Icon name={'copyright outline'} small />
+                                    <Icon name={'copyright outline'} size={'small'}/>
                                     <Header.Content>This webpage is coded by Mony Kaushik </Header.Content>
                                     <Header.Subheader>Minimalistic Apps by Mony Kaushik</Header.Subheader>
                                 </Header>
@@ -95,16 +98,16 @@ const MobileHomePageContainer = (props) => {
 
 };
 
-const mapStateToProps = (state)=>{
-    return{
-        loggedInUser:state.loggedInUser,
+const mapStateToProps = (state) => {
+    return {
+        loggedInUser: state.loggedInUser,
     }
 };
 
-const mapDispatchToProps = (dispatch)=>{
-    return{
-        logout:() => dispatch(ac_logout())
+const mapDispatchToProps = (dispatch) => {
+    return {
+        logout: () => dispatch(ac_logout())
     }
 };
 
-export default  connect(mapStateToProps, mapDispatchToProps)(withRouter(MobileHomePageContainer));
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(MobileHomePageContainer));

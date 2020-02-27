@@ -1,23 +1,29 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 import {Container, Grid, Header, Label, Segment} from "semantic-ui-react";
 import MyCard from "./MyCard";
 import MyProjects from "./MyProjects";
 import WhatElseToWrite from "./WhatElseToWrite";
 import MasterContainer from "../components/containers/MasterContainer";
+import {ac_incrementPageViews} from "../../reducers/pageViewsReducer";
+import {connect} from "react-redux";
 
-const About = () => {
+const About = (props) => {
 
-    return(
+    useEffect(() => {
+        props.incrementPageViews()
+    });
+
+    return (
         <MasterContainer>
             <Container>
                 <Grid stackable celled='internally'>
-                    <Grid.Row width={8} style={{marginTop:'2em'}} >
-                        <Header size={'huge'} content={'About Me'} color={'teal'} />
+                    <Grid.Row width={8} style={{marginTop: '2em'}}>
+                        <Header size={'huge'} content={'About Me'} color={'teal'}/>
                     </Grid.Row>
-                    <Grid.Column width={6} style={{marginTop:'2em'}}>
-                    <MyCard/>
+                    <Grid.Column width={6} style={{marginTop: '2em'}}>
+                        <MyCard/>
                     </Grid.Column>
-                    <Grid.Column width={10} style={{marginTop:'2em'}}>
+                    <Grid.Column width={10} style={{marginTop: '2em'}}>
                         <Header as={'h2'} content={'Other Projects'}/>
                         <MyProjects/>
                     </Grid.Column>
@@ -35,4 +41,9 @@ const About = () => {
     )
 };
 
-export default About;
+const mapDispatchToProps = (dispatch) => {
+    return {
+        incrementPageViews: () => dispatch(ac_incrementPageViews())
+    }
+};
+export default connect(null, mapDispatchToProps)(About);

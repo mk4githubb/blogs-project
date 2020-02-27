@@ -1,15 +1,16 @@
-import React,{useState} from 'react'
+import React, {useState} from 'react'
 import {
     Button,
-    Container, Dropdown,
+    Container,
+    Dropdown,
     Grid,
-    GridColumn,
-    GridRow,
-    Header, Icon, Image, List,
+    Header,
+    Icon,
+    Image,
+    List,
     Menu,
     Responsive,
     Segment,
-    Statistic,
     Visibility
 } from "semantic-ui-react";
 
@@ -27,9 +28,9 @@ const DesktopContainer = (props) => {
     const [menuFixed, setMenuFixed] = useState(false);
 
     const ButtonDisplayLogic = () => {
-        if(props.loggedInUser){
+        if (props.loggedInUser) {
             return (
-                <Dropdown text={`Hello  ${props.loggedInUser.username}`} floating labeled button className='icon' >
+                <Dropdown text={`Hello  ${props.loggedInUser.username}`} floating labeled button className='icon'>
                     <Dropdown.Menu>
                         <Dropdown.Item onClick={() => props.logout()}>Logout</Dropdown.Item>
                     </Dropdown.Menu>
@@ -38,7 +39,7 @@ const DesktopContainer = (props) => {
             )
         }
 
-        return(
+        return (
             <Button.Group>
                 <Button as={Link} to={'/login'}>Login</Button>
                 <Button.Or/>
@@ -48,10 +49,12 @@ const DesktopContainer = (props) => {
     };
 
     return (
-        <Responsive getWidth={getWidth}  minWidth={Responsive.onlyTablet.minWidth}>
-            <Visibility once={false} onBottomPassed={() => setMenuFixed(true)} onBottomPassedReverse={()=>setMenuFixed(false)}>
-                <Menu fixed={menuFixed?'top':null}>
-                    <Menu.Item as={Link} to={'/'}><Image rounded src={require('../../../resources/wolf.png')} size={'mini'}/></Menu.Item>
+        <Responsive getWidth={getWidth} minWidth={Responsive.onlyTablet.minWidth}>
+            <Visibility once={false} onBottomPassed={() => setMenuFixed(true)}
+                        onBottomPassedReverse={() => setMenuFixed(false)}>
+                <Menu fixed={menuFixed ? 'top' : null}>
+                    <Menu.Item as={Link} to={'/home'}><Image rounded src={require('../../../resources/wolf.png')}
+                                                             size={'mini'}/></Menu.Item>
                     <Menu.Item as={Link} to={'/home'}>Home</Menu.Item>
                     <Menu.Item as={Link} to={'/about'}>About</Menu.Item>
                     <Menu.Item as={Link} to={'/blogs'}>Blogs</Menu.Item>
@@ -62,20 +65,20 @@ const DesktopContainer = (props) => {
                 </Menu>
             </Visibility>
             {props.children}
-            <Segment inverted vertical style={{height:'150px'}} textAlign={'left'}>
+            <Segment inverted vertical style={{height: '150px'}} textAlign={'left'}>
                 <Container>
                     <Grid divided inverted stackable verticalAlign={'middle'} textAlign={'center'}>
                         <Grid.Row columns={2}>
                             <Grid.Column>
                                 <Header inverted as={'h3'} content={'Links'}/>
                                 <List>
-                                    <List.Item><a href={'https://github.com/monykaushik17'} target={'_blank'}>GitHub</a></List.Item>
-                                    <List.Item><a href={'https://www.linkedin.com/in/mony-kaushik-62b96118b/'} target={'_blank'}>LinkedIn</a></List.Item>
+                                    <List.Item><a href={'https://github.com/monykaushik17'} target={'_blank'} rel="noopener noreferrer">GitHub</a></List.Item>
+                                    <List.Item><a href={'https://www.linkedin.com/in/mony-kaushik-62b96118b/'} target={'_blank'} rel="noopener noreferrer">LinkedIn</a></List.Item>
                                 </List>
                             </Grid.Column>
-                            <Grid.Column >
+                            <Grid.Column>
                                 <Header inverted as={'h3'}>
-                                    <Icon name={'copyright outline'} small />
+                                    <Icon name={'copyright outline'} size={'small'}/>
                                     <Header.Content>This webpage is coded by Mony Kaushik </Header.Content>
                                     <Header.Subheader>Minimalistic Apps by Mony Kaushik</Header.Subheader>
                                 </Header>
@@ -88,15 +91,15 @@ const DesktopContainer = (props) => {
     )
 };
 
-const mapStateToProps = (state)=>{
-    return{
-        loggedInUser:state.loggedInUser,
+const mapStateToProps = (state) => {
+    return {
+        loggedInUser: state.loggedInUser,
     }
 };
 
-const mapDispatchToProps = (dispatch)=>{
-    return{
-        logout:() => dispatch(ac_logout())
+const mapDispatchToProps = (dispatch) => {
+    return {
+        logout: () => dispatch(ac_logout())
     }
 };
 

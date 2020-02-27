@@ -18,19 +18,18 @@ const DeleteButtonDisplay = (props) => {
             }
         };
 
-        try{
+        try {
             props.deleteBlog(config, props.blog.id, props.history);
-        }
-        catch (exception) {
+        } catch (exception) {
             props.setNotificationText('Error deleting blog');
         }
     };
 
-    if(props.loggedInUser && props.blog && props.loggedInUser.username == props.blog.author.username){
+    if (props.loggedInUser && props.blog && props.loggedInUser.username === props.blog.author.username) {
         return (
             <Button icon onClick={deleteHandler}>
-              <Icon name={'delete'}/>
-              Delete blog
+                <Icon name={'delete'}/>
+                Delete blog
             </Button>
         )
     }
@@ -41,15 +40,15 @@ const DeleteButtonDisplay = (props) => {
 const mapStateToProps = state => {
 
     return {
-        loggedInUser:state.loggedInUser
+        loggedInUser: state.loggedInUser
     }
 };
 
 const mapDispatchToProps = dispatch => {
 
     return {
-        setNotificationText:(text) => dispatch(ac_setNotification_Text(text)),
-        deleteBlog:(config, id, history) => dispatch(ac_deleteBlog(config,id, history))
+        setNotificationText: (text) => dispatch(ac_setNotification_Text(text)),
+        deleteBlog: (config, id, history) => dispatch(ac_deleteBlog(config, id, history))
     }
 };
 

@@ -1,8 +1,8 @@
 import React from 'react'
-import {Button, Card, Grid, Icon, Image, Label, GridRow, Segment, Container} from "semantic-ui-react";
+import {Button, Card, Container, Grid, GridRow, Icon, Image, Label, Segment} from "semantic-ui-react";
 import {connect} from 'react-redux'
 import {ac_setNotification_Text} from "../../../reducers/notificationTextReducer";
-import {ac_deleteBlog, ac_likeBlog} from '../../../reducers/blogsReducer';
+import {ac_likeBlog} from '../../../reducers/blogsReducer';
 import {Link} from "react-router-dom";
 import useResource from "../../../hooks/useResources";
 import DeleteButtonDisplay from "../DeleteButtonDisplayLogic";
@@ -10,13 +10,13 @@ import NotificationDisplayer from "../NofiticationDisplayer";
 
 const OneBlogURL = (props) => {
 
-    if (!props.blog){
+    if (!props.blog) {
         return null;
     }
 
     return (
         <Grid>
-            <GridRow columns={1} centered style={{border:'2px solid red'}}>
+            <GridRow columns={1} centered>
                 <CardDisplayLogic blog={props.blog} likeBlog={props.likeBlog}/>
             </GridRow>
         </Grid>
@@ -25,19 +25,19 @@ const OneBlogURL = (props) => {
 
 const CardDisplayLogic = ({blog, likeBlog}) => {
     const db = useResource('/');
-    const likeHandler= () => likeBlog(blog);
+    const likeHandler = () => likeBlog(blog);
 
-    if(!blog){
+    if (!blog) {
         return (
             <Segment loading>
-                <img src={require('../../../resources/paragraph.png')} className="ui image"/>
+                <Image src={require('../../../resources/paragraph.png')}/>
             </Segment>
         )
     }
 
-    return(
-        <Container style={{height:'78vh', marginTop:'2em'}}>
-            <Card fluid raised >
+    return (
+        <Container style={{height: '78vh', marginTop: '2em'}}>
+            <Card fluid raised>
                 <Card.Content textAlign={'left'}>
                     <Image
                         floated='right'
@@ -60,7 +60,7 @@ const CardDisplayLogic = ({blog, likeBlog}) => {
                             {blog.likes}
                         </Label>
                     </Button>
-                    <DeleteButtonDisplay  db={db} blog={blog}/>
+                    <DeleteButtonDisplay db={db} blog={blog}/>
                 </Card.Content>
             </Card>
             <NotificationDisplayer/>
@@ -70,16 +70,16 @@ const CardDisplayLogic = ({blog, likeBlog}) => {
 
 };
 
-const mapStateToProps = (state)=>{
-    return{
-        loggedInUser:state.loggedInUser,
-        notificationText:state.notificationText
+const mapStateToProps = (state) => {
+    return {
+        loggedInUser: state.loggedInUser,
+        notificationText: state.notificationText
     }
 };
 
-const mapDispatchToProps = (dispatch)=> {
-    return{
-        setNotificationText:(data) => dispatch(ac_setNotification_Text(data)),
+const mapDispatchToProps = (dispatch) => {
+    return {
+        setNotificationText: (data) => dispatch(ac_setNotification_Text(data)),
         likeBlog: (blog) => dispatch(ac_likeBlog(blog)),
     }
 };

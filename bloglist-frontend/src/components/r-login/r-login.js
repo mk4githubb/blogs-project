@@ -1,6 +1,6 @@
-import React from "react";
+import React, {useEffect} from "react";
 import MasterContainer from "../components/containers/MasterContainer";
-import {Button, Container, Form, Grid, Header, Icon, Image, Message, Segment} from "semantic-ui-react";
+import {Button, Container, Form, Grid, Header, Icon, Message, Segment} from "semantic-ui-react";
 import {connect} from 'react-redux'
 import {ac_setNotification_Text} from "../../reducers/notificationTextReducer";
 import {ac_login} from "../../reducers/loggedInUserReducer";
@@ -8,6 +8,7 @@ import useResource from "../../hooks/useResources";
 import useFormHook from "../../hooks/formHook";
 import {Link} from "react-router-dom";
 import NotificationDisplayer from "../components/NofiticationDisplayer";
+import {ac_incrementPageViews} from "../../reducers/pageViewsReducer";
 
 
 const RouteLogin = (props) => {
@@ -15,6 +16,10 @@ const RouteLogin = (props) => {
     const login = useResource('/api/login');
     const username = useFormHook('text');
     const password = useFormHook('password');
+
+    useEffect(() => {
+        props.incrementPageViews()
+    });
 
     const handleSubmit = async (event) => {
         event.preventDefault();
@@ -28,12 +33,11 @@ const RouteLogin = (props) => {
             password: password.value
         };
 
-        try{
+        try {
             props.login(login, requestObject);
             username.clear();
             password.clear();
-        }
-        catch (exception) {
+        } catch (exception) {
             props.setNotificationText('Error Logging in - Invalid Username or password');
         }
     };
@@ -49,21 +53,22 @@ const RouteLogin = (props) => {
         return true
     };
 
-    return(
+    return (
         <MasterContainer>
             <Container>
                 <Grid inverted>
                     <Grid.Row centered>
-                        <Grid textAlign={'center'}  style={{ height: '100vh'}} verticalAlign='middle'>
-                            <Grid.Column style={{ maxWidth: 450 }}>
+                        <Grid textAlign={'center'} style={{height: '100vh'}} verticalAlign='middle'>
+                            <Grid.Column style={{maxWidth: 450}}>
                                 <Header as='h2' color='teal' textAlign='center'>
-                                    <Icon name={'sign-in'} /> Log-in to your account
+                                    <Icon name={'sign-in'}/> Log-in to your account
                                 </Header>
                                 <Form size='large' onSubmit={handleSubmit}>
                                     <Segment stacked>
-                                        <Form.Input fluid value={username.value} icon='user' iconPosition='left' placeholder='username' onChange={username.update} />
+                                        <Form.Input fluid value={username.value} icon='user' iconPosition='left'
+                                                    placeholder='username' onChange={username.update}/>
                                         <Form.Input
-                                            value = {password.value}
+                                            value={password.value}
                                             fluid
                                             icon='lock'
                                             iconPosition='left'
@@ -89,10 +94,11 @@ const RouteLogin = (props) => {
     )
 };
 
-const mapDispatchToProps = (dispatch)=> {
-    return{
-        setNotificationText:(data) => dispatch(ac_setNotification_Text(data)),
+const mapDispatchToProps = (dispatch) => {
+    return {
+        setNotificationText: (data) => dispatch(ac_setNotification_Text(data)),
         login: (db, data) => dispatch(ac_login(db, data)),
+        incrementPageViews: () => dispatch(ac_incrementPageViews())
     }
 };
 

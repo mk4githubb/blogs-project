@@ -4,7 +4,7 @@ import {connect} from "react-redux/";
 
 const NotificationDisplayer = props => {
 
-    if(props.notificationText){
+    if (props.notificationText) {
         return <Message floating>{props.notificationText}</Message>
     }
     return null;
@@ -14,7 +14,7 @@ const NotificationDisplayer = props => {
 const mapStateToProps = state => {
 
     return {
-        notificationText:state.notificationText
+        notificationText: state.notificationText
     }
 };
 
