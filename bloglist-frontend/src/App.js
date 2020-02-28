@@ -37,7 +37,11 @@ const App = (props) => {
     }, []);
 
     const findUserById = id => props.users.find(user => user.id === id);
-    const findBlogById = id => props.blogs.find(blog => blog.id === id);
+    const findBlogById = id => {
+
+        const x = props.blogs.find(blog => blog.id === id);
+        return x;
+    }
 
     return (
         <Router>

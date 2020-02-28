@@ -12,7 +12,7 @@ const RoutesOneBlog = (props) => {
 
     useEffect(() => {
         props.incrementPageViews()
-    });
+    },[]);
 
     if (!props.blog) {
         return (

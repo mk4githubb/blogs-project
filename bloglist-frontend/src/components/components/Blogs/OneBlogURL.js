@@ -1,12 +1,9 @@
 import React from 'react'
-import {Button, Card, Container, Grid, GridRow, Icon, Image, Label, Segment} from "semantic-ui-react";
+import { Grid, GridRow} from "semantic-ui-react";
 import {connect} from 'react-redux'
 import {ac_setNotification_Text} from "../../../reducers/notificationTextReducer";
 import {ac_likeBlog} from '../../../reducers/blogsReducer';
-import {Link} from "react-router-dom";
-import useResource from "../../../hooks/useResources";
-import DeleteButtonDisplay from "../DeleteButtonDisplayLogic";
-import NotificationDisplayer from "../NofiticationDisplayer";
+import CardDisplayLogic from "./CardDisplayLogic";
 
 const OneBlogURL = (props) => {
 
@@ -17,71 +14,27 @@ const OneBlogURL = (props) => {
     return (
         <Grid>
             <GridRow columns={1} centered>
-                <CardDisplayLogic blog={props.blog} likeBlog={props.likeBlog}/>
+                <CardDisplayLogic blog={props.blog}/>
             </GridRow>
         </Grid>
     )
 };
 
-const CardDisplayLogic = ({blog, likeBlog}) => {
-    const db = useResource('/');
-    const likeHandler = () => likeBlog(blog);
 
-    if (!blog) {
-        return (
-            <Segment loading>
-                <Image src={require('../../../resources/paragraph.png')}/>
-            </Segment>
-        )
-    }
 
-    return (
-        <Container style={{height: '78vh', marginTop: '2em'}}>
-            <Card fluid raised>
-                <Card.Content textAlign={'left'}>
-                    <Image
-                        floated='right'
-                        size='mini'
-                        src={require('../../../resources/blogIcon.png')}
-                    />
-                    <Card.Header as={Link} to={`/blogs/${blog.id}`}>{blog.title}</Card.Header>
-                    <Card.Meta as={Link} to={`/users/${blog.author.id}`}>by {blog.author.username}</Card.Meta>
-                    <Card.Description>
-                        {blog.text}
-                    </Card.Description>
-                </Card.Content>
-                <Card.Content extra>
-                    <Button as='div' labelPosition='right' floated={'left'} onClick={likeHandler}>
-                        <Button color='red'>
-                            <Icon name='heart'/>
-                            Like
-                        </Button>
-                        <Label as='a' basic color='red' pointing='left'>
-                            {blog.likes}
-                        </Label>
-                    </Button>
-                    <DeleteButtonDisplay db={db} blog={blog}/>
-                </Card.Content>
-            </Card>
-            <NotificationDisplayer/>
-        </Container>
+// const mapStateToProps = (state) => {
+//     return {
+//         loggedInUser: state.loggedInUser,
+//         notificationText: state.notificationText,
+//         users: state.users
+//     }
+// };
+//
+// const mapDispatchToProps = (dispatch) => {
+//     return {
+//         setNotificationText: (data) => dispatch(ac_setNotification_Text(data)),
+//         likeBlog: (blog) => dispatch(ac_likeBlog(blog)),
+//     }
+// };
 
-    )
-
-};
-
-const mapStateToProps = (state) => {
-    return {
-        loggedInUser: state.loggedInUser,
-        notificationText: state.notificationText
-    }
-};
-
-const mapDispatchToProps = (dispatch) => {
-    return {
-        setNotificationText: (data) => dispatch(ac_setNotification_Text(data)),
-        likeBlog: (blog) => dispatch(ac_likeBlog(blog)),
-    }
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(OneBlogURL);
+export default OneBlogURL;
