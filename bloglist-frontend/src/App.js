@@ -1,7 +1,5 @@
-import useResource from "./hooks/useResources";
 import React, {useEffect} from "react";
 import {BrowserRouter as Router, Route} from "react-router-dom";
-import {ac_setNotification_Text} from "./reducers/notificationTextReducer";
 import {ac_setLoggedInUserFromLS} from "./reducers/loggedInUserReducer";
 import {ac_InitBlogs} from "./reducers/blogsReducer";
 import {ac_initUsers} from "./reducers/usersReducer";
@@ -19,9 +17,6 @@ import {ac_initPageViews} from "./reducers/pageViewsReducer";
 
 const App = (props) => {
 
-    const blogsDB = useResource('/api/blogs');
-    const usersDB = useResource('/api/users');
-
     useEffect(() => {
         const alreadyLoggedInUser = window.localStorage.getItem('token');
 
@@ -30,18 +25,14 @@ const App = (props) => {
             props.setLoggedInUser(parsed);
         }
 
-        props.initBlogs(blogsDB);
-        props.initUsers(usersDB);
+        props.initUsers();
+        props.initBlogs();
         props.initPageViews();
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
+    }, [null]);
 
     const findUserById = id => props.users.find(user => user.id === id);
-    const findBlogById = id => {
-
-        const x = props.blogs.find(blog => blog.id === id);
-        return x;
-    }
+    const findBlogById = id => props.blogs.find(blog => blog.id === id);
 
     return (
         <Router>
@@ -65,17 +56,15 @@ const mapStateToProps = (state) => {
     return {
         blogs: state.blogs,
         loggedInUser: state.loggedInUser,
-        notificationText: state.notificationText,
         users: state.users
     }
 };
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        setNotificationText: (data) => dispatch(ac_setNotification_Text(data)),
         setLoggedInUser: (data) => dispatch(ac_setLoggedInUserFromLS(data)),
-        initBlogs: (db) => dispatch(ac_InitBlogs(db)),
-        initUsers: (db) => dispatch(ac_initUsers(db)),
+        initBlogs: () => dispatch(ac_InitBlogs()),
+        initUsers: () => dispatch(ac_initUsers()),
         initPageViews: () => dispatch(ac_initPageViews())
     }
 };

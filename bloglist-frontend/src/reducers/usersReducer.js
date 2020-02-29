@@ -1,3 +1,5 @@
+import useResource from "../hooks/useResources";
+
 const usersReducer = (state = [], action) => {
 
     switch (action.type) {
@@ -9,9 +11,10 @@ const usersReducer = (state = [], action) => {
     }
 };
 
-export const ac_initUsers = (db) => {
+export const ac_initUsers = () => {
     return async dispatch => {
         try {
+            const db = useResource('/api/users');
             const received = await db.getAll();
             const users = received.data;
             dispatch({

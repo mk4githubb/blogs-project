@@ -29,7 +29,6 @@ const BlogsContainer = (props) => {
                         <Header as={'h3'} content={'No blogs Found'}/>
                     </Container>
                 </Segment>
-
             )
         }
         return (
@@ -50,7 +49,7 @@ const BlogsContainer = (props) => {
     }
 
     return (
-        <Segment secondary style={{minHeight: '70vh'}}>
+        <Segment secondary  style={{minHeight: '70vh'}}>
             <Card.Group stackable centered>
                 {PaginationArraySlicer().map(i => <OneBlog key={i.id} blog={i}/>)}
             </Card.Group>

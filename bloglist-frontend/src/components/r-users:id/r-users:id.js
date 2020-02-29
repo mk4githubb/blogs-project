@@ -1,16 +1,18 @@
 import React, {useEffect, useState} from 'react'
 import MasterContainer from "../components/containers/MasterContainer";
 import {Button, Container, Divider, Grid, GridRow, Header, Icon, List, Pagination} from "semantic-ui-react";
-import {Link} from "react-router-dom";
+import {Link, withRouter} from "react-router-dom";
 import {ac_incrementPageViews} from "../../reducers/pageViewsReducer";
 import {connect} from "react-redux";
+import {compose} from "redux";
 
 const RoutesOneUser = (props) => {
     const [page, setPage] = useState(1);
 
     useEffect(() => {
-        props.incrementPageViews()
-    });
+        props.incrementPageViews();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    },[null]);
 
     if (!props.user) {
         return null;
@@ -46,14 +48,14 @@ const RoutesOneUser = (props) => {
                 <Header as='h1' icon={'user'} content={`User Profile`}/>
                 <Divider/>
                 <Header as={'h1'} content={props.user.username}/>
-                <Container>
+                <Container style={{minHeight:'70vh'}}>
                     <Header as={'h2'} content={`Blogs by ${props.user.username}`}/>
                     <List>
                         {listItems()}
                     </List>
                     <Grid centered stackable>
                         <GridRow>
-                            <Button floated={'right'} as={Link} to={'/users'} animated
+                            <Button floated={'right'} onClick={() => props.history.goBack()} animated
                                     attached={'bottom'}>
                                 <Button.Content visible>Go Back</Button.Content>
                                 <Button.Content hidden>
@@ -86,4 +88,4 @@ const mapDispatchToProps = (dispatch) => {
     }
 };
 
-export default connect(null, mapDispatchToProps)(RoutesOneUser);
+export default compose(withRouter, connect(null, mapDispatchToProps))(RoutesOneUser);

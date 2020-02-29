@@ -10,14 +10,15 @@ import {ac_incrementPageViews} from "../../reducers/pageViewsReducer";
 const RouteUsers = (props) => {
 
     useEffect(() => {
-        props.incrementPageViews()
-    });
+        props.incrementPageViews();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    },[null]);
 
     return (
         <MasterContainer>
             <Segment secondary>
                 <Container>
-                    <Header as={'h2'} content={'Search Users'} color={'teal'}/>
+                    <Header as={'h2'} content={'Search Users'} color={'blue'}/>
                     <Input
                         icon={{name: 'search', circular: true, link: true}}
                         placeholder='Search...' value={props.userSearchText ? props.userSearchText : ''} fluid
@@ -37,7 +38,6 @@ const mapStateToProps = state => {
     }
 };
 
-
 const mapDispatchToProps = (dispatch) => {
     return {
         setUserSearchText: (text) => dispatch(ac_setUserSearch_Text(text)),
@@ -46,4 +46,3 @@ const mapDispatchToProps = (dispatch) => {
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(RouteUsers);
-

@@ -12,7 +12,8 @@ const RoutesOneBlog = (props) => {
 
     useEffect(() => {
         props.incrementPageViews()
-    },[]);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [null]);
 
     if (!props.blog) {
         return (

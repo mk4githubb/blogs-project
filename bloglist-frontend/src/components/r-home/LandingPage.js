@@ -10,8 +10,9 @@ import {Responsive} from "semantic-ui-react";
 const LandingPage = (props) => {
 
     useEffect(() => {
-        props.incrementPageViews()
-    });
+        props.incrementPageViews();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    },[null]);
 
     return (
         <HomePageContainer>

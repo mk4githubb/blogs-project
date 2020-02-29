@@ -3,7 +3,7 @@ import {
     Button,
     Container,
     Dropdown,
-    Grid,
+    Grid, GridColumn,
     Header,
     Icon,
     Image,
@@ -52,9 +52,15 @@ const DesktopContainer = (props) => {
             <Visibility once={false} onBottomPassed={() => setMenuFixed(true)}
                         onBottomPassedReverse={() => setMenuFixed(false)}>
                 <Menu fixed={menuFixed ? 'top' : null}>
-                    <Menu.Item as={Link} to={'/home'}><Image rounded src={require('../../../resources/wolf.png')}
-                                                             size={'mini'}/></Menu.Item>
-                    <Menu.Item as={Link} to={'/home'}>Home</Menu.Item>
+                    <Menu.Item as={Link} to={'/home'}><Grid verticalAlign={'middle'} columns={2}>
+                        <GridColumn width={6}>
+                            <Image rounded src={require('../../../resources/wolf.png')} size={'mini'}/>
+                        </GridColumn>
+                        <GridColumn width={10}>
+                            <Header size={'small'} content={'Minimalistic Blogs'} color={'blue'}/>
+                        </GridColumn>
+                    </Grid>
+                    </Menu.Item>
                     <Menu.Item as={Link} to={'/about'}>About</Menu.Item>
                     <Menu.Item as={Link} to={'/blogs'}>Blogs</Menu.Item>
                     <Menu.Item as={Link} to={'/users'}>Users</Menu.Item>

@@ -1,5 +1,16 @@
 import React, {useState} from 'react'
-import {Grid, GridRow, Header, Icon, Image, List, Menu, Responsive, Segment, Sidebar,} from "semantic-ui-react";
+import {
+    Grid,
+    GridRow,
+    Header,
+    Icon,
+    Image,
+    List,
+    Menu,
+    Responsive,
+    Segment,
+    Sidebar,
+} from "semantic-ui-react";
 import {getWidth} from "./DesktopContainer";
 import {Link, withRouter} from "react-router-dom";
 
@@ -20,14 +31,16 @@ const MobileContainer = (props) => {
                 visible={visible}
                 width='thin'
             >
-                <Menu.Item as={Link} to={'/'}>
+                <Menu.Item as={Link} to={'/home'}>
                     <Grid centered>
                         <GridRow>
-                            <Image rounded src={require('../../../resources/wolfInverted.png')} size={'mini'}/>
+                            <Image src={require('../../../resources/wolfInverted.png')} size={'mini'}/>
+                        </GridRow>
+                        <GridRow>
+                            <Header size={'tiny'} content={'Minimalistic Blogs'} color={'blue'}/>
                         </GridRow>
                     </Grid>
                 </Menu.Item>
-                <Menu.Item as={Link} to={'/home'}> Home </Menu.Item>
                 <Menu.Item as={Link} to={'/about'}> About </Menu.Item>
                 <Menu.Item as={Link} to={'/blogs'}> Blogs </Menu.Item>
                 <Menu.Item as={Link} to={'/users'}> Users </Menu.Item>

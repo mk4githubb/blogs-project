@@ -16,18 +16,33 @@ const RouteCreateBlog = (props) => {
 
     useEffect(() => {
         props.incrementPageViews()
-    });
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [null]);
+
+    const Validator = () => {
+        if (!props.loggedInUser) {
+            props.setNotificationText("Please Login in to create a blog");
+            return false;
+        } else if (titleText.length < 1) {
+            props.setNotificationText("Title can't be left blank");
+            return false;
+        } else if (aboutText.length < 1) {
+            props.setNotificationText("Body can't be left blank");
+            return false;
+        } else if (titleText.length > 156) {
+            props.setNotificationText("Title can't be longer than 156 characters");
+            return false;
+        } else if (aboutText.length > 500) {
+            props.setNotificationText("Description can't go beyond 500 characters");
+            return false;
+        }
+        return true;
+    };
 
     const blogCreateHandler = (event) => {
         event.preventDefault();
 
-        if (!props.loggedInUser) {
-            props.setNotificationText("Please Login in to create a blog");
-        } else if (titleText.length < 1) {
-            props.setNotificationText("Title can't be left blank");
-            return
-        } else if (aboutText.length < 1) {
-            props.setNotificationText("Body can't be left blank");
+        if (!Validator()) {
             return;
         }
 

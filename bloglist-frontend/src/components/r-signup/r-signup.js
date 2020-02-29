@@ -17,8 +17,9 @@ const RouteSignup = (props) => {
     const password = useFormHook('password');
 
     useEffect(() => {
-        props.incrementPageViews()
-    });
+        props.incrementPageViews();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    },[null]);
 
     const inputValidator = () => {
         if (!username || username.value.length === 0 || !password || password.value.length === 0) {

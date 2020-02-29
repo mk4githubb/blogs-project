@@ -37,9 +37,14 @@ const MobileHomePageContainer = (props) => {
             >
                 <Menu.Item as={Link} to={'/'}>
                     <Grid centered>
-                        <GridRow>
-                            <Image rounded src={require('../../../resources/wolfInverted.png')} size={'mini'}/>
-                        </GridRow>
+                        <Grid centered>
+                            <GridRow>
+                                <Image src={require('../../../resources/wolfInverted.png')} size={'mini'}/>
+                            </GridRow>
+                            <GridRow>
+                                <Header size={'tiny'} content={'Minimalistic Blogs'} color={'blue'}/>
+                            </GridRow>
+                        </Grid>
                     </Grid>
                 </Menu.Item>
                 <Menu.Item as={Link} to={'/home'}> Home </Menu.Item>

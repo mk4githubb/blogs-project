@@ -9,14 +9,15 @@ import {ac_incrementPageViews} from "../../reducers/pageViewsReducer";
 const RouteBlogs = (props) => {
 
     useEffect(() => {
-        props.incrementPageViews()
-    });
+        props.incrementPageViews();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    },[null]);
 
     return (
         <MasterContainer>
             <Segment secondary>
                 <Container>
-                    <Header as={'h2'} content={'Search Blogs'} color={'teal'}/>
+                    <Header as={'h2'} content={'Search Blogs'} color={'blue'}/>
                     <Input icon={{name: 'search', circular: true, link: true}} placeholder='Search...'
                            value={props.searchText ? props.searchText : ''} fluid
                            onChange={(event) => props.setSearchText(event.target.value)}/>

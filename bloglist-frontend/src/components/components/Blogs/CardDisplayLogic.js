@@ -1,4 +1,4 @@
-import {Button, Card, Container, Icon, Image, Label, Segment} from "semantic-ui-react";
+import {Button, Card, Container, Header, Icon, Image, Label, Segment} from "semantic-ui-react";
 import {Link} from "react-router-dom";
 import DeleteButtonDisplay from "../DeleteButtonDisplayLogic";
 import NotificationDisplayer from "../NofiticationDisplayer";
@@ -8,8 +8,6 @@ import {ac_likeBlog} from "../../../reducers/blogsReducer";
 
 
 const CardDisplayLogic = (props) => {
-
-    // props.blog = props.blogs.find(i => i.id === props.blog.id);
 
     if (!props.blog) {
         return (
@@ -29,7 +27,9 @@ const CardDisplayLogic = (props) => {
                         src={require('../../../resources/blogIcon.png')}
                     />
                     <Card.Header as={Link} to={`/blogs/${props.blog.id}`}>{props.blog.title}</Card.Header>
-                    <Card.Meta as={Link} to={`/users/${props.blog.author.id}`}>by {props.blog.author.username}</Card.Meta>
+                    <Card.Meta as={Link} to={`/users/${props.blog.author.id}`}>by <Header as={'span'} content={props.blog.author.username}
+                                                                               color={'blue'}
+                                                                               size={'tiny'}/></Card.Meta>
                     <Card.Description>
                         {props.blog.text}
                     </Card.Description>
@@ -44,7 +44,7 @@ const CardDisplayLogic = (props) => {
                             {props.blog.likes}
                         </Label>
                     </Button>
-                    <DeleteButtonDisplay  blog={props.blog}/>
+                    <DeleteButtonDisplay blog={props.blog}/>
                 </Card.Content>
             </Card>
             <NotificationDisplayer/>

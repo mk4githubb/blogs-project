@@ -9,7 +9,6 @@ const OneBlog = (props) => {
 
     const likeHandler = () => props.likeBlog(props.blog);
 
-
     return (
         <Card centered raised color={'teal'}>
             <Card.Content textAlign={'left'}>
@@ -39,7 +38,8 @@ const OneBlog = (props) => {
 const mapStateToProps = (state) => {
     return {
         loggedInUser: state.loggedInUser,
-        notificationText: state.notificationText
+        notificationText: state.notificationText,
+        users:state.users
     }
 };
 

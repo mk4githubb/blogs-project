@@ -16,8 +16,9 @@ const RouteLogin = (props) => {
     const password = useFormHook('password');
 
     useEffect(() => {
-        props.incrementPageViews()
-    });
+        props.incrementPageViews();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    },[null]);
 
     const handleSubmit = async (event) => {
         event.preventDefault();
