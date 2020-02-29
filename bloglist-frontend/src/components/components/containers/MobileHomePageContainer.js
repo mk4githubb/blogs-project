@@ -39,7 +39,7 @@ const MobileHomePageContainer = (props) => {
                     <Grid centered>
                         <Grid centered>
                             <GridRow>
-                                <Image src={require('../../../resources/wolfInverted.png')} size={'mini'}/>
+                                <Image src={require('../../../resources/wolfInverted.png')} size={'tiny'}/>
                             </GridRow>
                             <GridRow>
                                 <Header size={'tiny'} content={'Minimalistic Blogs'} color={'blue'}/>

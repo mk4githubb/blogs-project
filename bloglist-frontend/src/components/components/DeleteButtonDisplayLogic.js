@@ -21,7 +21,7 @@ const DeleteButtonDisplay = (props) => {
         try {
             props.deleteBlog(config, props.blog.id, props.history);
         } catch (exception) {
-            props.setNotificationText('Error deleting blog');
+            props.setNotificationText('Error deleting blog',false);
         }
     };
 
@@ -47,7 +47,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
 
     return {
-        setNotificationText: (text) => dispatch(ac_setNotification_Text(text)),
+        setNotificationText: (text, positive) => dispatch(ac_setNotification_Text(text, positive)),
         deleteBlog: (config, id, history) => dispatch(ac_deleteBlog(config, id, history))
     }
 };

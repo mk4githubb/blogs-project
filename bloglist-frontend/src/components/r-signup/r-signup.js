@@ -23,10 +23,10 @@ const RouteSignup = (props) => {
 
     const inputValidator = () => {
         if (!username || username.value.length === 0 || !password || password.value.length === 0) {
-            props.setNotificationText('Title or body cannot be empty');
+            props.setNotificationText('Title or body cannot be empty', false);
             return false;
         } else if (username.value.length < 3 || password.value.length < 3) {
-            props.setNotificationText("Length of username or password can't be less than 3");
+            props.setNotificationText("Length of username or password can't be less than 3", false);
             return false;
         }
         return true
@@ -49,7 +49,7 @@ const RouteSignup = (props) => {
             username.clear();
             password.clear();
         } catch (exception) {
-            props.setNotificationText('Error, Creating user. Please try again.')
+            props.setNotificationText('Error, Creating user. Please try again.', false)
         }
     };
 
@@ -103,7 +103,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        setNotificationText: (data) => dispatch(ac_setNotification_Text(data)),
+        setNotificationText: (data,positive) => dispatch(ac_setNotification_Text(data,positive)),
         createUser: (newUser, history) => dispatch(ac_createUser(newUser, history)),
         incrementPageViews: () => dispatch(ac_incrementPageViews())
     }

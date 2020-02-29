@@ -5,6 +5,7 @@ import {Container, Header, Input, Segment} from "semantic-ui-react";
 import {connect} from "react-redux";
 import {ac_setUserSearch_Text} from "../../reducers/userSearchReducer";
 import {ac_incrementPageViews} from "../../reducers/pageViewsReducer";
+import NofiticationDisplayer from "../components/NofiticationDisplayer";
 
 
 const RouteUsers = (props) => {
@@ -16,6 +17,7 @@ const RouteUsers = (props) => {
 
     return (
         <MasterContainer>
+            <NofiticationDisplayer/>
             <Segment secondary>
                 <Container>
                     <Header as={'h2'} content={'Search Users'} color={'blue'}/>

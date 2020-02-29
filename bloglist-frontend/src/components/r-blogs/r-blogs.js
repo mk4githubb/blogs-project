@@ -5,6 +5,7 @@ import {Container, Header, Input, Segment} from "semantic-ui-react";
 import {connect} from "react-redux";
 import {ac_setSearch_Text} from "../../reducers/searchTextReducer";
 import {ac_incrementPageViews} from "../../reducers/pageViewsReducer";
+import NofiticationDisplayer from "../components/NofiticationDisplayer";
 
 const RouteBlogs = (props) => {
 
@@ -15,6 +16,7 @@ const RouteBlogs = (props) => {
 
     return (
         <MasterContainer>
+            <NofiticationDisplayer/>
             <Segment secondary>
                 <Container>
                     <Header as={'h2'} content={'Search Blogs'} color={'blue'}/>

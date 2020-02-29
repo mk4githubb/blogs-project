@@ -1,6 +1,6 @@
 import React from 'react'
 import {Grid, GridRow} from "semantic-ui-react";
-import CardDisplayLogic from "./CardDisplayLogic";
+import CardDisplayLogic from "./SingleBlogCard";
 
 const OneBlogURL = (props) => {
 

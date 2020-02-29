@@ -1,22 +1,10 @@
 import React, {useState} from 'react'
-import {
-    Button,
-    Container,
-    Dropdown,
-    Grid, GridColumn,
-    Header,
-    Icon,
-    Image,
-    List,
-    Menu,
-    Responsive,
-    Segment,
-    Visibility
-} from "semantic-ui-react";
-
+import {Button, Container, Dropdown, Grid, GridColumn, Header, Icon, Image, List,Menu, Responsive,Segment, Visibility } from "semantic-ui-react";
 import {Link} from "react-router-dom";
 import {connect} from "react-redux";
 import {ac_logout} from "../../../reducers/loggedInUserReducer";
+import ModalForRating from "../Rating";
+import HomePageContainer from "./HomePageContainer";
 
 export const getWidth = () => {
     const isSSR = typeof window === 'undefined';

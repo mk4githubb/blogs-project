@@ -50,11 +50,11 @@ export const ac_createBlog = (config, newBlog, history) => {
                 data: receivedData.data
             });
 
-            dispatch(ac_setNotification_Text('Blog created. Taking you to your new blog'));
+            dispatch(ac_setNotification_Text('Blog created. Taking you to your new blog', true));
             setTimeout(() => history.push(`/blogs/${receivedData.data.id}`), 2000);
 
         } catch (exception) {
-            dispatch(ac_setNotification_Text('Error creating the blog'));
+            dispatch(ac_setNotification_Text('Error creating the blog', false));
         }
 
     }
@@ -67,17 +67,15 @@ export const ac_likeBlog = (blog) => {
         try {
             let db = useResource('/api/blogs');
             const newBlog = {...blog, likes: blog.likes + 1};
-            db.put(blog.id, newBlog);
+            await db.put(blog.id, newBlog);
 
             dispatch({
                 type: 'likeBlog',
                 data: blog.id
             });
 
-            dispatch(ac_setNotification_Text('You liked the blog'));
-
         } catch (exception) {
-            dispatch(ac_setNotification_Text('Error liking blog'));
+            dispatch(ac_setNotification_Text('Error liking blog', false));
         }
     }
 };
@@ -87,8 +85,8 @@ export const ac_deleteBlog = (config, id, history) => {
         let db = useResource('/api/blogs');
         try {
             await db.del(id, config);
-            dispatch(ac_setNotification_Text('Blog deleted. Taking you back to homepage.'));
-            setTimeout(() => history.push('/home'), 1000);
+            dispatch(ac_setNotification_Text('Blog deleted. Taking you back to homepage.', true));
+            setTimeout(() => history.push('/home'), 2000);
 
             dispatch({
                 type: 'deleteBlog',
@@ -96,7 +94,7 @@ export const ac_deleteBlog = (config, id, history) => {
             });
 
         } catch (exception) {
-            dispatch(ac_setNotification_Text('Error deleting blog'));
+            dispatch(ac_setNotification_Text('Error deleting blog', false));
         }
     }
 };

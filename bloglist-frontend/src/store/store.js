@@ -7,6 +7,7 @@ import thunk from "redux-thunk";
 import usersReducer from "../reducers/usersReducer";
 import userSearchTextReducer from "../reducers/userSearchReducer";
 import pageViewsReducer from "../reducers/pageViewsReducer";
+import ratingReducer from "../reducers/ratingReducer";
 
 
 const combinedReducer = combineReducers({
@@ -16,7 +17,8 @@ const combinedReducer = combineReducers({
     searchText: searchTextReducer,
     users: usersReducer,
     userSearchText: userSearchTextReducer,
-    pageViews: pageViewsReducer
+    pageViews: pageViewsReducer,
+    rating:ratingReducer
 });
 
 const store = createStore(combinedReducer, applyMiddleware(thunk));

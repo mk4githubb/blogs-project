@@ -40,10 +40,10 @@ const UpperMidSection = (props) => {
     return (
         <Segment inverted textAlign={'center'}>
             <Header as={'h1'}
-                    style={{fontSize: props.mobile ? '1.5em' : '3em', marginTop: props.mobile ? '1.5em' : '2em'}}>Minimalistic
-                Blogs <span style={{fontSize: '0.6em'}}>by Back_slash</span></Header>
+                    style={{fontSize: props.mobile ? '2em' : '4em', marginTop: props.mobile ? '1em' : '1em'}}>Minimalistic
+                Blogs</Header>
             <Header as={'h2'}
-                    style={{fontSize: props.mobile ? '1em' : '2em', marginTop: props.mobile ? '0.7em' : '1.5em'}}
+                    style={{fontSize: props.mobile ? '1.2em' : '2em', marginTop: props.mobile ? '0.7em' : '1.5em'}}
                     content={'A website for all your blogging needs'}/>
             {props.loggedInUser ? null : <MyStatistics/>}
             <Divider horizontal section/>

@@ -18,15 +18,35 @@ const loggedInUseReducer = (state = null, action) => {
 
 
 export const ac_setLoggedInUserFromLS = (data) => {
-    return {
-        type: 'setUser',
-        data: data
+    return async dispatch => {
+        try{
+            dispatch({
+                type: 'setUser',
+                data: data
+            });
+
+            dispatch(ac_setNotification_Text(`Hello ${data.username}, Welcome back!`, true))
+        }
+        catch (e) {
+            dispatch(ac_setNotification_Text('Please login in.', false))
+        }
+
     }
 };
 
 export const ac_logout = () => {
-    return {
-        type: 'logout',
+    return async dispatch => {
+        try{
+            dispatch({
+                type: 'logout',
+            });
+
+            dispatch(ac_setNotification_Text('Logged Out Successfully.', true))
+        }
+        catch (e) {
+            dispatch(ac_setNotification_Text('Logged Out Successfully.', false))
+        }
+
     }
 };
 
@@ -38,10 +58,10 @@ export const ac_login = (data) => {
             const returnResultData = returnedObject.data;
             window.localStorage.setItem('token', JSON.stringify(returnResultData));
             dispatch(ac_setLoggedInUserFromLS(returnResultData));
-            dispatch(ac_setNotification_Text('Login Successful'));
+            dispatch(ac_setNotification_Text('Login Successful', true));
 
         } catch (exception) {
-            dispatch(ac_setNotification_Text('Error Logging in. Invalid username or password'))
+            dispatch(ac_setNotification_Text('Error Logging in. Invalid username or password', false))
         }
     }
 };
@@ -51,11 +71,11 @@ export const ac_createUser = (newUser, history) => {
         try {
             const db = useResource('/api/users');
             await db.post(newUser);
-            dispatch(ac_setNotification_Text(`User -${newUser.username} Created. Please Login. Taking you to the login page.`));
+            dispatch(ac_setNotification_Text(`User ${newUser.username} Created. Please Login. Taking you to the login page.`, true));
             history.push('/login');
             setTimeout(() => history.push('/login'), 2000);
         } catch (exception) {
-            dispatch(ac_setNotification_Text('Error Creating user'));
+            dispatch(ac_setNotification_Text('Error Creating user. Either Database connection error or Try Picking a different username.', false));
         }
     }
 };

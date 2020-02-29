@@ -12,7 +12,7 @@ export const ac_initPageViews = () => {
                 data: views.data.pageViews
             })
         } catch (exception) {
-            dispatch(ac_setNotification_Text('Database connection could not be established'))
+            dispatch(ac_setNotification_Text('Database connection could not be established', false))
         }
     }
 };
@@ -27,7 +27,7 @@ export const ac_incrementPageViews = () => {
                 type: 'increment'
             })
         } catch (exception) {
-            dispatch(ac_setNotification_Text('Database connection could not be established'))
+            dispatch(ac_setNotification_Text('Database connection could not be established', false))
         }
     }
 };

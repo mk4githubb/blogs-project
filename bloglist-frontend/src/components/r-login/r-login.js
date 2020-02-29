@@ -37,16 +37,16 @@ const RouteLogin = (props) => {
             username.clear();
             password.clear();
         } catch (exception) {
-            props.setNotificationText('Error Logging in - Invalid Username or password');
+            props.setNotificationText('Error Logging in - Invalid Username or password', false);
         }
     };
 
     const inputValidator = () => {
         if (!username || username.value.length === 0 || !password || password.value.length === 0) {
-            props.setNotificationText('Title or body cannot be empty');
+            props.setNotificationText('Title or body cannot be empty', false);
             return false;
         } else if (username.value.length < 3 || password.value.length < 3) {
-            props.setNotificationText("Length of username or password can't be less than 3");
+            props.setNotificationText("Length of username or password can't be less than 3", false);
             return false;
         }
         return true
@@ -95,7 +95,7 @@ const RouteLogin = (props) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        setNotificationText: (data) => dispatch(ac_setNotification_Text(data)),
+        setNotificationText: (data, positive) => dispatch(ac_setNotification_Text(data,positive)),
         login: (data) => dispatch(ac_login(data)),
         incrementPageViews: () => dispatch(ac_incrementPageViews())
     }

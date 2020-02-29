@@ -34,7 +34,7 @@ const MobileContainer = (props) => {
                 <Menu.Item as={Link} to={'/home'}>
                     <Grid centered>
                         <GridRow>
-                            <Image src={require('../../../resources/wolfInverted.png')} size={'mini'}/>
+                            <Image src={require('../../../resources/wolfInverted.png')} size={'tiny'}/>
                         </GridRow>
                         <GridRow>
                             <Header size={'tiny'} content={'Minimalistic Blogs'} color={'blue'}/>

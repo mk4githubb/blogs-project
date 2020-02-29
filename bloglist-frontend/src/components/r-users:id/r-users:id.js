@@ -5,6 +5,7 @@ import {Link, withRouter} from "react-router-dom";
 import {ac_incrementPageViews} from "../../reducers/pageViewsReducer";
 import {connect} from "react-redux";
 import {compose} from "redux";
+import NofiticationDisplayer from "../components/NofiticationDisplayer";
 
 const RoutesOneUser = (props) => {
     const [page, setPage] = useState(1);
@@ -44,12 +45,13 @@ const RoutesOneUser = (props) => {
 
     return (
         <MasterContainer>
+            <NofiticationDisplayer/>
             <Container style={{marginTop: '2em'}}>
-                <Header as='h1' icon={'user'} content={`User Profile`}/>
+                <Header as='h1' icon={'user'} content={`User Profile`} color={'grey'}/>
                 <Divider/>
-                <Header as={'h1'} content={props.user.username}/>
+                <Header as={'h1'} content={props.user.username} color={'blue'}/>
                 <Container style={{minHeight:'70vh'}}>
-                    <Header as={'h2'} content={`Blogs by ${props.user.username}`}/>
+                    <Header as={'h2'} content={`Blogs by ${props.user.username}`} color={'grey'}/>
                     <List>
                         {listItems()}
                     </List>

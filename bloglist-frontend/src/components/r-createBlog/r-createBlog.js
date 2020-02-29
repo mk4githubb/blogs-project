@@ -21,19 +21,19 @@ const RouteCreateBlog = (props) => {
 
     const Validator = () => {
         if (!props.loggedInUser) {
-            props.setNotificationText("Please Login in to create a blog");
+            props.setNotificationText("Please Login in to create a blog", false);
             return false;
         } else if (titleText.length < 1) {
-            props.setNotificationText("Title can't be left blank");
+            props.setNotificationText("Title can't be left blank", false);
             return false;
         } else if (aboutText.length < 1) {
-            props.setNotificationText("Body can't be left blank");
+            props.setNotificationText("Body can't be left blank", false);
             return false;
         } else if (titleText.length > 156) {
-            props.setNotificationText("Title can't be longer than 156 characters");
+            props.setNotificationText("Title can't be longer than 156 characters", false);
             return false;
         } else if (aboutText.length > 500) {
-            props.setNotificationText("Description can't go beyond 500 characters");
+            props.setNotificationText("Description can't go beyond 500 characters", false);
             return false;
         }
         return true;
@@ -62,7 +62,7 @@ const RouteCreateBlog = (props) => {
             setAboutText('');
             setTitleText('');
         } catch (exception) {
-            props.setNotificationText('Error saving blog');
+            props.setNotificationText('Error saving blog', false);
         }
     };
 
@@ -95,7 +95,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        setNotificationText: (text) => dispatch(ac_setNotification_Text(text)),
+        setNotificationText: (text,positive) => dispatch(ac_setNotification_Text(text,positive)),
         createBlog: (config, newBlog, history) => dispatch(ac_createBlog(config, newBlog, history)),
         incrementPageViews: () => dispatch(ac_incrementPageViews())
     }

@@ -6,6 +6,9 @@ import HomePageContainer from "../components/containers/HomePageContainer";
 import {ac_incrementPageViews} from "../../reducers/pageViewsReducer";
 import {getWidth} from "../components/containers/DesktopContainer";
 import {Responsive} from "semantic-ui-react";
+import NofiticationDisplayer from "../components/NofiticationDisplayer";
+import ModalForRating from "../components/Rating";
+import {ac_setRated} from "../../reducers/ratingReducer";
 
 const LandingPage = (props) => {
 
@@ -16,6 +19,8 @@ const LandingPage = (props) => {
 
     return (
         <HomePageContainer>
+            <ModalForRating/>
+            <NofiticationDisplayer/>
             <UpperMidSection mobile={getWidth() < Responsive.onlyMobile.maxWidth}/>
             <BlogsContainer/>
         </HomePageContainer>
@@ -24,7 +29,7 @@ const LandingPage = (props) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        incrementPageViews: () => dispatch(ac_incrementPageViews())
+        incrementPageViews: () => dispatch(ac_incrementPageViews()),
     }
 };
 

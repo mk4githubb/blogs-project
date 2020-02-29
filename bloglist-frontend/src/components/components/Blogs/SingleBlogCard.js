@@ -54,14 +54,13 @@ const SingleBlogCard = (props) => {
 
 const mapStateToProps = (state) => {
     return {
-        users: state.users,
         blogs: state.blogs
     }
 };
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        likeBlog: (blog) => dispatch(ac_likeBlog(blog)),
+        likeBlog: (blog) => dispatch(ac_likeBlog(blog))
     }
 };
 export default connect(mapStateToProps, mapDispatchToProps)(SingleBlogCard);
