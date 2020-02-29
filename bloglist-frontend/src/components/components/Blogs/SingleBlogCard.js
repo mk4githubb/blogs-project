@@ -26,10 +26,10 @@ const SingleBlogCard = (props) => {
                         size='mini'
                         src={require('../../../resources/blogIcon.png')}
                     />
-                    <Card.Header as={Link} to={`/blogs/${props.blog.id}`}>{props.blog.title}</Card.Header>
-                    <Card.Meta as={Link} to={`/users/${props.blog.author.id}`}>by <Header as={'span'} content={props.blog.author.username}
+                    <Card.Header><Link to={`/blogs/${props.blog.id}`}>{props.blog.title}</Link></Card.Header>
+                    <Card.Meta>by <Link to={`/users/${props.blog.author.id}`}> <Header as={'span'} content={props.blog.author.username}
                                                                                color={'orange'}
-                                                                               size={'tiny'}/></Card.Meta>
+                                                                               size={'tiny'}/></Link></Card.Meta>
                     <Card.Description >
                         {props.blog.text.split('\n').map(((item, i) => <p key={i}>{item}</p>))}
                     </Card.Description>

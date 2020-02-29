@@ -7,7 +7,7 @@ import {connect} from "react-redux";
 const ModalForRating = (props) => {
 
     if(!props.rating.loadedOnce){
-        setTimeout(()=> props.setRatedON(),10000);
+        setTimeout(()=> props.setRatedON(),15000);
     }
 
     return (
