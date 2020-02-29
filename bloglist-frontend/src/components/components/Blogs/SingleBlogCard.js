@@ -30,8 +30,8 @@ const SingleBlogCard = (props) => {
                     <Card.Meta as={Link} to={`/users/${props.blog.author.id}`}>by <Header as={'span'} content={props.blog.author.username}
                                                                                color={'orange'}
                                                                                size={'tiny'}/></Card.Meta>
-                    <Card.Description>
-                        {props.blog.text}
+                    <Card.Description >
+                        {props.blog.text.split('\n').map(((item, i) => <p key={i}>{item}</p>))}
                     </Card.Description>
                 </Card.Content>
                 <Card.Content extra>
