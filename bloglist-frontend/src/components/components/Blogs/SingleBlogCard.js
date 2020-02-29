@@ -7,7 +7,7 @@ import {connect} from "react-redux";
 import {ac_likeBlog} from "../../../reducers/blogsReducer";
 
 
-const CardDisplayLogic = (props) => {
+const SingleBlogCard = (props) => {
 
     if (!props.blog) {
         return (
@@ -28,7 +28,7 @@ const CardDisplayLogic = (props) => {
                     />
                     <Card.Header as={Link} to={`/blogs/${props.blog.id}`}>{props.blog.title}</Card.Header>
                     <Card.Meta as={Link} to={`/users/${props.blog.author.id}`}>by <Header as={'span'} content={props.blog.author.username}
-                                                                               color={'blue'}
+                                                                               color={'orange'}
                                                                                size={'tiny'}/></Card.Meta>
                     <Card.Description>
                         {props.blog.text}
@@ -64,4 +64,4 @@ const mapDispatchToProps = (dispatch) => {
         likeBlog: (blog) => dispatch(ac_likeBlog(blog)),
     }
 };
-export default connect(mapStateToProps, mapDispatchToProps)(CardDisplayLogic);
+export default connect(mapStateToProps, mapDispatchToProps)(SingleBlogCard);

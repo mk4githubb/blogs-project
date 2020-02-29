@@ -15,7 +15,6 @@ viewsRouter.get('/', async (request, response, next) => {
 viewsRouter.post('/', async (request, response, next) => {
 
     try{
-
         const newLikes = await viewTable.findByIdAndUpdate('5e56f852a88e6883d4744784', {$inc:{pageViews:1}}, {new:true})
         response.status(200).send(newLikes.toJSON())
     }

@@ -2,6 +2,7 @@ const config = require('./src/utils/config');
 const express = require('express');
 const bodyParser = require('body-parser');
 const blogsRouter = require('./src/controllers/slashBlogsRouter');
+const ratingRouter = require( "./src/controllers/slashRatingRouter");
 const userRouter = require('./src/controllers/slashUsersRouter');
 const loginRouter = require('./src/controllers/loginRouter');
 const viewsRouter = require('./src/controllers/slashViews');
@@ -24,6 +25,7 @@ app.use('/api/login', loginRouter);
 app.use('/api/blogs', blogsRouter);
 app.use('/api/users', userRouter);
 app.use('/api/pageviews',viewsRouter);
+app.use('/api/ratings',ratingRouter);
 
 app.use(middleware.errorHandler);
 

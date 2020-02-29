@@ -1,15 +1,19 @@
 const blogRouter = require('express').Router();
-const blogEntries = require('../models/blogSchema');
 const userTable = require('../models/usersSchema');
 const blogTable = require('../models/blogSchema');
 const jwt = require('jsonwebtoken');
 const config = require('../utils/config');
 
-blogRouter.get('/', async (request, response) => {
+blogRouter.get('/', async (request, response, next) => {
+    try{
+        const foundEntires = await blogTable.find({}).populate('author', {'blogPosts':0});
+        const x = foundEntires.map(blog => blog.toJSON());
+        response.status(200).send(x);
+    }
+    catch (exception) {
+        return next(new Error('ConnectionError'));
+    }
 
-    const foundEntires = await blogEntries.find({}).populate('author', {'blogPosts':0});
-    const x = foundEntires.map(blog => blog.toJSON());
-    response.status(200).send(x);
 });
 
 blogRouter.post('/', async (request, response, next) => {
@@ -33,17 +37,14 @@ blogRouter.post('/', async (request, response, next) => {
         });
 
         await newBlog.save();
-
         foundUser.blogPosts = foundUser.blogPosts.concat(newBlog);
         await foundUser.save();
+        await blogTable.populate(newBlog, {path:'author', select:'username'});
         response.status(200).json(newBlog.toJSON());
-        next();
     }
     catch (exception) {
-        next(exception);
+        return next(new Error('ConnectionError'));
     }
-
-
 });
 
 blogRouter.delete('/:id', async (request, response, next) =>{
@@ -66,7 +67,7 @@ blogRouter.delete('/:id', async (request, response, next) =>{
        response.status(200).end();
    }
    catch (exception) {
-       next(exception);
+       return next(new Error('ConnectionError'));
    }
 });
 
@@ -78,7 +79,7 @@ blogRouter.put('/:id', async (request, response, next) =>{
         response.status(200).send(updatedBlog.toJSON());
     }
     catch (exception) {
-        next(exception);
+        return next(new Error('ConnectionError'));
     }
 });
 
