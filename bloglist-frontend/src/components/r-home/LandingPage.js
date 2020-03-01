@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react'
+import React, {useEffect, useState} from 'react'
 import BlogsContainer from "../components/Blogs/BlogConatiner";
 import {connect} from 'react-redux'
 import UpperMidSection from "../components/UpperMidSection";
@@ -8,12 +8,14 @@ import {getWidth} from "../components/containers/DesktopContainer";
 import {Responsive} from "semantic-ui-react";
 import NofiticationDisplayer from "../components/NofiticationDisplayer";
 import ModalForRating from "../components/Rating";
-import {ac_setRated} from "../../reducers/ratingReducer";
+
 
 const LandingPage = (props) => {
+    const [page, setPage] = useState(1);
 
     useEffect(() => {
         props.incrementPageViews();
+        window.scroll(0,0);
         // eslint-disable-next-line react-hooks/exhaustive-deps
     },[null]);
 
@@ -21,8 +23,8 @@ const LandingPage = (props) => {
         <HomePageContainer>
             <ModalForRating/>
             <NofiticationDisplayer/>
-            <UpperMidSection mobile={getWidth() < Responsive.onlyMobile.maxWidth}/>
-            <BlogsContainer/>
+            <UpperMidSection mobile={getWidth() < Responsive.onlyMobile.maxWidth} setPage={setPage}/>
+            <BlogsContainer page={page} setPage={setPage}/>
         </HomePageContainer>
     )
 };

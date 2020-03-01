@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react'
+import React, {useEffect, useState} from 'react'
 import MasterContainer from "../components/containers/MasterContainer";
 import UsersContainer from "../components/Users/UsersContainer";
 import {Container, Header, Input, Segment} from "semantic-ui-react";
@@ -9,9 +9,11 @@ import NofiticationDisplayer from "../components/NofiticationDisplayer";
 
 
 const RouteUsers = (props) => {
+    const [page, setPage] = useState(1);
 
     useEffect(() => {
         props.incrementPageViews();
+        window.scroll(0,0);
         // eslint-disable-next-line react-hooks/exhaustive-deps
     },[null]);
 
@@ -24,11 +26,14 @@ const RouteUsers = (props) => {
                     <Input
                         icon={{name: 'search', circular: true, link: true}}
                         placeholder='Search...' value={props.userSearchText ? props.userSearchText : ''} fluid
-                        onChange={event => props.setUserSearchText(event.target.value)}
+                        onChange={event => {
+                            props.setUserSearchText(event.target.value);
+                            // setPage(1);
+                        }}
                     />
                 </Container>
             </Segment>
-            <UsersContainer/>
+            <UsersContainer page={page} setPage={setPage}/>
         </MasterContainer>
     )
 };

@@ -15,7 +15,8 @@ const RouteCreateBlog = (props) => {
     const [aboutText, setAboutText] = useState('');
 
     useEffect(() => {
-        props.incrementPageViews()
+        props.incrementPageViews();
+        window.scroll(0,0);
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [null]);
 

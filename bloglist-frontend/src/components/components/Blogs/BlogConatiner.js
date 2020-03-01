@@ -1,55 +1,35 @@
-import React, {useState} from 'react'
-import {Card, Container, Grid, GridRow, Header, Image, Pagination, Segment} from "semantic-ui-react";
+import React from 'react'
+import {Card, Container, Grid, GridRow, Header, Pagination, Segment} from "semantic-ui-react";
 import OneBlog from "./OneBlog";
 import {connect} from "react-redux";
 
 
 const BlogsContainer = (props) => {
-
-    const [page, setPage] = useState(1);
     let blogs = props.blogs;
-
-    const PaginationArraySlicer = () => {
-        if (page === 1) {
-            return blogs.slice(0, 12)
-        }
-        return blogs.slice(12 * (page - 1), 24 * (page - 1));
-    };
 
     if (props.searchText != null) {
         blogs = props.blogs.filter(i => (i.text.toLowerCase().includes(props.searchText.toLowerCase()) || i.title.toLowerCase().includes(props.searchText.toLowerCase())));
     }
 
-    if (!blogs || blogs.length === 0) {
-
-        if (props.blogs !== 0 && blogs.length === 0) {
-            return (
-                <Segment style={{height: '70vh'}}>
-                    <Container>
-                        <Header as={'h3'} content={'No blogs Found'}/>
-                    </Container>
-                </Segment>
-            )
+    const PaginationArraySlicer = () => {
+        if (props.page === 1) {
+            return blogs.slice(0, 12)
         }
+        return blogs.slice(12 * (props.page - 1), 24 * (props.page - 1));
+    };
+
+    if (props.blogs.length !== 0 && blogs.length === 0) {
         return (
-            <Segment loading style={{height: '70vh'}}>
-                <Image.Group size={'large'}>
-                    <Image src={require('../../../resources/paragraph.png')}/>
-                    <Image src={require('../../../resources/paragraph.png')}/>
-                    <Image src={require('../../../resources/paragraph.png')}/>
-                    <Image src={require('../../../resources/paragraph.png')}/>
-                    <Image src={require('../../../resources/paragraph.png')}/>
-                    <Image src={require('../../../resources/paragraph.png')}/>
-                    <Image src={require('../../../resources/paragraph.png')}/>
-                    <Image src={require('../../../resources/paragraph.png')}/>
-                    <Image src={require('../../../resources/paragraph.png')}/>
-                </Image.Group>
+            <Segment style={{height: '70vh'}}>
+                <Container text style={{marginTop:'2em'}}>
+                    <Header as={'h3'} content={'No Such blog'}/>
+                </Container>
             </Segment>
         )
-    }
+    };
 
     return (
-        <Segment secondary  style={{minHeight: '70vh'}}>
+        <Segment secondary  style={{minHeight: '70vh'}} loading={!blogs || blogs.length === 0}>
             <Card.Group stackable centered>
                 {PaginationArraySlicer().map(i => <OneBlog key={i.id} blog={i}/>)}
             </Card.Group>
@@ -57,13 +37,13 @@ const BlogsContainer = (props) => {
                 <GridRow>
                     <Pagination
                         boundaryRange={0}
-                        defaultActivePage={page}
+                        defaultActivePage={props.page}
                         ellipsisItem={null}
                         firstItem={null}
                         lastItem={null}
                         siblingRange={1}
                         totalPages={Math.ceil(blogs.length / 12)}
-                        onPageChange={(event, data) => setPage(data.activePage)}
+                        onPageChange={(event, data) => props.setPage(data.activePage)}
                     />
                 </GridRow>
             </Grid>

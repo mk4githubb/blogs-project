@@ -7,11 +7,11 @@ import {ac_setSearch_Text} from "../../reducers/searchTextReducer";
 import {ac_incrementPageViews} from "../../reducers/pageViewsReducer";
 import {connect} from "react-redux";
 
-
 const RoutesOneBlog = (props) => {
 
     useEffect(() => {
-        props.incrementPageViews()
+        props.incrementPageViews();
+        window.scroll(0,0);
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [null]);
 

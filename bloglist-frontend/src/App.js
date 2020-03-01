@@ -1,5 +1,5 @@
 import React, {useEffect} from "react";
-import {BrowserRouter as Router, Route} from "react-router-dom";
+import {HashRouter as Router, Route} from "react-router-dom";
 import {ac_setLoggedInUserFromLS} from "./reducers/loggedInUserReducer";
 import {ac_InitBlogs} from "./reducers/blogsReducer";
 import {ac_initUsers} from "./reducers/usersReducer";
@@ -36,6 +36,7 @@ const App = (props) => {
 
     return (
         <Router>
+
             <Route exact path={'/'} render={() => <LandingPage/>}/>
             <Route exact path={'/home'} render={() => <LandingPage/>}/>
             <Route exact path={'/blogs'} render={() => <RouteBlogs/>}/>
@@ -48,6 +49,7 @@ const App = (props) => {
             <Route exact path={'/users/:id'}
                    render={({match}) => <RoutesOneUser user={findUserById(match.params.id)}/>}/>
             <Route exact path={'/blogs/create/newBlog'} render={() => <RouteCreateBlog/>}/>
+
         </Router>
     )
 };

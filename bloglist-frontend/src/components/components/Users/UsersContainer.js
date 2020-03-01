@@ -1,10 +1,9 @@
-import {Card, Container, Grid, GridRow, Header, Image, Pagination, Segment} from "semantic-ui-react";
-import React, {useState} from 'react'
+import {Card, Container, Grid, GridRow, Header, Pagination, Segment} from "semantic-ui-react";
+import React from 'react'
 import OneUser from "./OneUser";
 import {connect} from 'react-redux'
 
 const UsersContainer = (props) => {
-    const [page, setPage] = useState(1);
     let users = props.users;
 
     if (props.userSearchText != null) {
@@ -12,42 +11,25 @@ const UsersContainer = (props) => {
     }
 
     const PaginationArraySlicer = () => {
-        if (page === 1) {
+        if (props.page === 1) {
             return users.slice(0, 10)
         }
-        return users.slice(10 * (page - 1), 20 * (page - 1));
+        return users.slice(10 * (props.page - 1), 20 * (props.page - 1));
     };
 
-    if (!users || users.length === 0) {
 
-        if (props.users !== 0 && users.length === 0) {
-            return (
-                <Segment style={{height: '70vh'}}>
-                    <Container>
-                        <Header as={'h2'} content={'No users found'}/>
-                    </Container>
-                </Segment>
-            )
-        }
+    if (props.users.length !== 0 && users.length === 0) {
         return (
-            <Segment loading style={{height: '70vh'}}>
-                <Image.Group size={'large'}>
-                    <Image src={require('../../../resources/paragraph.png')}/>
-                    <Image src={require('../../../resources/paragraph.png')}/>
-                    <Image src={require('../../../resources/paragraph.png')}/>
-                    <Image src={require('../../../resources/paragraph.png')}/>
-                    <Image src={require('../../../resources/paragraph.png')}/>
-                    <Image src={require('../../../resources/paragraph.png')}/>
-                    <Image src={require('../../../resources/paragraph.png')}/>
-                    <Image src={require('../../../resources/paragraph.png')}/>
-                    <Image src={require('../../../resources/paragraph.png')}/>
-                </Image.Group>
+            <Segment style={{height: '70vh'}}>
+                <Container text style={{marginTop:'2em'}}>
+                    <Header as={'h2'} content={'No Such User'}/>
+                </Container>
             </Segment>
         )
     }
 
     return (
-        <Segment style={{minHeight: '70vh'}}>
+        <Segment style={{minHeight: '70vh'}} loading={!users || users.length === 0}>
             <Card.Group stackable doubling centered>
                 {PaginationArraySlicer().map(i => <OneUser key={i.id} user={i}/>)}
             </Card.Group>
@@ -55,13 +37,13 @@ const UsersContainer = (props) => {
                 <GridRow>
                     <Pagination
                         boundaryRange={0}
-                        defaultActivePage={page}
+                        defaultActivePage={props.page}
                         ellipsisItem={null}
                         firstItem={null}
                         lastItem={null}
                         siblingRange={1}
                         totalPages={Math.ceil(users.length / 10)}
-                        onPageChange={(event, data) => setPage(data.activePage)}
+                        onPageChange={(event, data) => props.setPage(data.activePage)}
                     />
                 </GridRow>
             </Grid>

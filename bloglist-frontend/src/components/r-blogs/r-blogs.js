@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react'
+import React, {useEffect, useState} from 'react'
 import MasterContainer from "../components/containers/MasterContainer";
 import BlogsContainer from "../components/Blogs/BlogConatiner";
 import {Container, Header, Input, Segment} from "semantic-ui-react";
@@ -8,9 +8,11 @@ import {ac_incrementPageViews} from "../../reducers/pageViewsReducer";
 import NofiticationDisplayer from "../components/NofiticationDisplayer";
 
 const RouteBlogs = (props) => {
+    const [page, setPage] = useState(1);
 
     useEffect(() => {
         props.incrementPageViews();
+        window.scroll(0,0);
         // eslint-disable-next-line react-hooks/exhaustive-deps
     },[null]);
 
@@ -22,10 +24,14 @@ const RouteBlogs = (props) => {
                     <Header as={'h2'} content={'Search Blogs'} color={'blue'}/>
                     <Input icon={{name: 'search', circular: true, link: true}} placeholder='Search...'
                            value={props.searchText ? props.searchText : ''} fluid
-                           onChange={(event) => props.setSearchText(event.target.value)}/>
+                           onChange={(event) => {
+                               props.setSearchText(event.target.value);
+                               // setPage(1);
+                                }
+                           }/>
                 </Container>
             </Segment>
-            <BlogsContainer/>
+            <BlogsContainer page={page} setPage={setPage}/>
         </MasterContainer>
     )
 };

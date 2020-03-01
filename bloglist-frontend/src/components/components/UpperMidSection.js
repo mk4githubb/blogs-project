@@ -50,7 +50,10 @@ const UpperMidSection = (props) => {
             <Container style={{width: '50%'}}>
                 <Input fluid icon={{name: 'search', circular: true, link: true}} placeholder='Search blogs...'
                        value={props.searchText ? props.searchText : ''}
-                       onChange={event => props.setSearchText(event.target.value)}/>
+                       onChange={event => {
+                           props.setSearchText(event.target.value);
+                           // props.setPage(1);
+                       }}/>
             </Container>
         </Segment>
     )

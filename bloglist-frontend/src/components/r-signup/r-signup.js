@@ -18,6 +18,7 @@ const RouteSignup = (props) => {
 
     useEffect(() => {
         props.incrementPageViews();
+        window.scroll(0,0);
         // eslint-disable-next-line react-hooks/exhaustive-deps
     },[null]);
 
@@ -76,6 +77,7 @@ const RouteSignup = (props) => {
                                             type='password'
                                             onChange={password.update}
                                             value={password.value}
+                                            autoComplete="on"
                                         />
                                         <Button color='teal' fluid size='large'>
                                             Sign up

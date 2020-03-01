@@ -17,7 +17,7 @@ const OneBlog = (props) => {
                                                                       color={'orange'}
                                                                       size={'tiny'}/></Link></Card.Meta>
                     <Card.Description>
-                        {props.blog.text.length < 300 ? props.blog.text : props.blog.text.substring(0, 155) + '...'}
+                        {props.blog.text.length < 175 ? props.blog.text : props.blog.text.substring(0, 175) + '...'}
                     </Card.Description>
                 </Card.Content>
                 <Card.Content extra>
