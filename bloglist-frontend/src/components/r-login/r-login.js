@@ -55,10 +55,10 @@ const RouteLogin = (props) => {
 
     return (
         <MasterContainer>
-            <Container>
+            <Container style={{minHeight:'83vh'}}>
                 <Grid inverted>
                     <Grid.Row centered>
-                        <Grid textAlign={'center'} style={{height: '100vh'}} verticalAlign='middle'>
+                        <Grid textAlign={'center'} style={{height: '90vh'}} verticalAlign='middle'>
                             <Grid.Column style={{maxWidth: 450}}>
                                 <Header as='h2' color='teal' textAlign='center'>
                                     <Icon name={'sign-in'}/> Log-in to your account

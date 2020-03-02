@@ -18,7 +18,7 @@ const About = (props) => {
     return (
         <MasterContainer>
             <NofiticationDisplayer/>
-            <Segment>
+            <Segment style={{minHeight:'83vh'}}>
                 <Container>
                     <Grid stackable celled='internally'>
                         <Grid.Row width={8} style={{marginTop: '2em'}}>

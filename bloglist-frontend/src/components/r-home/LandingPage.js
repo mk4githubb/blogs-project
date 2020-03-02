@@ -24,7 +24,7 @@ const LandingPage = (props) => {
             <ModalForRating/>
             <NofiticationDisplayer/>
             <UpperMidSection mobile={getWidth() < Responsive.onlyMobile.maxWidth} setPage={setPage}/>
-            <BlogsContainer page={page} setPage={setPage}/>
+            <BlogsContainer page={page} setPage={setPage} landingPage={true}/>
         </HomePageContainer>
     )
 };

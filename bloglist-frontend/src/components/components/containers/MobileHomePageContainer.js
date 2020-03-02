@@ -7,7 +7,6 @@ import {
     Header,
     Icon,
     Image,
-    List,
     Menu,
     Responsive,
     Segment,
@@ -17,6 +16,7 @@ import {getWidth} from "./DesktopContainer";
 import {Link, withRouter} from "react-router-dom";
 import {ac_logout} from "../../../reducers/loggedInUserReducer";
 import {connect} from "react-redux";
+import Footer from "./Footer";
 
 const MobileHomePageContainer = (props) => {
     const [visible, setVisible] = useState(false);
@@ -77,28 +77,7 @@ const MobileHomePageContainer = (props) => {
                     </Container>
                 </Segment>
                 {props.children}
-                <Segment inverted>
-                    <Grid divided inverted stackable verticalAlign={'middle'} textAlign={'center'}>
-                        <Grid.Row columns={2}>
-                            <Grid.Column>
-                                <Header inverted as={'h3'} content={'Links'}/>
-                                <List>
-                                    <List.Item><a href={'https://github.com/monykaushik17'} target={'_blank'}
-                                                  rel="noopener noreferrer">GitHub</a></List.Item>
-                                    <List.Item><a href={'https://www.linkedin.com/in/mony-kaushik-62b96118b/'}
-                                                  target={'_blank'} rel="noopener noreferrer">LinkedIn</a></List.Item>
-                                </List>
-                            </Grid.Column>
-                            <Grid.Column>
-                                <Header inverted as={'h3'}>
-                                    <Icon name={'copyright outline'} size={'small'}/>
-                                    <Header.Content>This webpage is coded by Mony Kaushik </Header.Content>
-                                    <Header.Subheader>Minimalistic Apps by Mony Kaushik</Header.Subheader>
-                                </Header>
-                            </Grid.Column>
-                        </Grid.Row>
-                    </Grid>
-                </Segment>
+                <Footer/>
             </Sidebar.Pusher>
         </Responsive>
     )

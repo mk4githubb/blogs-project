@@ -43,7 +43,6 @@ const RoutesOneUser = (props) => {
         </List.Item>);
     };
 
-
     return (
         <MasterContainer>
             <NofiticationDisplayer/>

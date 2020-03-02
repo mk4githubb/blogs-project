@@ -1,4 +1,4 @@
-import {Button, Card, Header, Icon, Image, Label} from "semantic-ui-react";
+import {Button,Header, Icon,Item, Label} from "semantic-ui-react";
 import React from "react";
 import {ac_setNotification_Text} from "../../../reducers/notificationTextReducer";
 import {ac_deleteBlog, ac_likeBlog} from "../../../reducers/blogsReducer";
@@ -8,19 +8,18 @@ import {Link} from "react-router-dom";
 const OneBlog = (props) => {
 
     return (
-            <Card centered raised color={'teal'}>
-                <Card.Content textAlign={'left'}>
-                    <Image floated={'right'} size={'mini'} src={require('../../../resources/blogIcon.png')}/>
-                    <Card.Header><Link to={`/blogs/${props.blog.id}`}>{props.blog.title}</Link></Card.Header>
-                    <Card.Meta>by <Link
-                        to={`/users/${props.blog.author.id}`}><Header as={'span'} content={props.blog.author.username}
-                                                                      color={'orange'}
-                                                                      size={'tiny'}/></Link></Card.Meta>
-                    <Card.Description>
-                        {props.blog.text.length < 175 ? props.blog.text : props.blog.text.substring(0, 175) + '...'}
-                    </Card.Description>
-                </Card.Content>
-                <Card.Content extra>
+        <Item style={{marginTop:'7px', marginBottom:'7px'}}>
+            <Item.Image size='tiny' src={require('../../../resources/blogIcon.png')} />
+            <Item.Content verticalAlign={'middle'}>
+                <Item.Header style={{'fontSize': '1.5em', marginTop:'0.25em'}}><Link to={`/blogs/${props.blog.id}`}>{props.blog.title}</Link></Item.Header>
+                <Item.Meta style={{'fontSize': '1.2em',marginTop:'0.5em'}}>by <Link to={`/users/${props.blog.author.id}`}>
+                        <Header as={'span'} content={props.blog.author.username} color={'orange'} size={'tiny'}/>
+                    </Link>
+                </Item.Meta>
+                <Item.Description>
+                    {props.blog.text.length < 300 ? props.blog.text : props.blog.text.substring(0, 300) + '...'}
+                </Item.Description>
+                <Item.Extra>
                     <Button as='div' labelPosition='right' floated={'left'} onClick={() => props.likeBlog(props.blog)}>
                         <Button color='red'>
                             <Icon name='heart'/>
@@ -30,8 +29,9 @@ const OneBlog = (props) => {
                             {props.blog.likes}
                         </Label>
                     </Button>
-                </Card.Content>
-            </Card>
+                </Item.Extra>
+            </Item.Content>
+        </Item>
     )
 };
 

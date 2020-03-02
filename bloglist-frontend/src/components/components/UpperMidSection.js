@@ -52,7 +52,7 @@ const UpperMidSection = (props) => {
                        value={props.searchText ? props.searchText : ''}
                        onChange={event => {
                            props.setSearchText(event.target.value);
-                           // props.setPage(1);
+                           props.setPage(1);
                        }}/>
             </Container>
         </Segment>

@@ -36,7 +36,6 @@ const App = (props) => {
 
     return (
         <Router>
-
             <Route exact path={'/'} render={() => <LandingPage/>}/>
             <Route exact path={'/home'} render={() => <LandingPage/>}/>
             <Route exact path={'/blogs'} render={() => <RouteBlogs/>}/>
@@ -49,7 +48,6 @@ const App = (props) => {
             <Route exact path={'/users/:id'}
                    render={({match}) => <RoutesOneUser user={findUserById(match.params.id)}/>}/>
             <Route exact path={'/blogs/create/newBlog'} render={() => <RouteCreateBlog/>}/>
-
         </Router>
     )
 };

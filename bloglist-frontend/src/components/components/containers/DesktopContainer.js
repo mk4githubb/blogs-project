@@ -56,9 +56,9 @@ const DesktopContainer = (props) => {
                 </Menu>
             </Visibility>
             {props.children}
-            <Segment inverted vertical style={{height: '150px'}} textAlign={'left'}>
+            <Segment vertical style={{height: '150px'}} textAlign={'left'}>
                 <Container>
-                    <Grid divided inverted stackable verticalAlign={'middle'} textAlign={'center'}>
+                    <Grid divided stackable verticalAlign={'middle'} textAlign={'center'}>
                         <Grid.Row columns={2}>
                             <Grid.Column>
                                 <Header inverted as={'h3'} content={'Links'}/>

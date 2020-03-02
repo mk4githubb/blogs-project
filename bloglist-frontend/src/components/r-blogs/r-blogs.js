@@ -18,20 +18,22 @@ const RouteBlogs = (props) => {
 
     return (
         <MasterContainer>
-            <NofiticationDisplayer/>
-            <Segment secondary>
-                <Container>
-                    <Header as={'h2'} content={'Search Blogs'} color={'blue'}/>
-                    <Input icon={{name: 'search', circular: true, link: true}} placeholder='Search...'
-                           value={props.searchText ? props.searchText : ''} fluid
-                           onChange={(event) => {
-                               props.setSearchText(event.target.value);
-                               // setPage(1);
-                                }
-                           }/>
-                </Container>
+            <Segment>
+                <NofiticationDisplayer/>
+                <Segment secondary style={{minHeight:'13vh'}}>
+                    <Container>
+                        <Header as={'h2'} content={'Search Blogs'} color={'blue'}/>
+                        <Input icon={{name: 'search', circular: true, link: true}} placeholder='Search...'
+                               value={props.searchText ? props.searchText : ''} fluid
+                               onChange={(event) => {
+                                   props.setSearchText(event.target.value);
+                                   setPage(1);
+                                    }
+                               }/>
+                    </Container>
+                </Segment>
+                <BlogsContainer page={page} setPage={setPage}/>
             </Segment>
-            <BlogsContainer page={page} setPage={setPage}/>
         </MasterContainer>
     )
 };

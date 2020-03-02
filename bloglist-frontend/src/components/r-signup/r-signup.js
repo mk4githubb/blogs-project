@@ -24,7 +24,10 @@ const RouteSignup = (props) => {
 
     const inputValidator = () => {
         if (!username || username.value.length === 0 || !password || password.value.length === 0) {
-            props.setNotificationText('Title or body cannot be empty', false);
+            props.setNotificationText('username or password cannot be empty', false);
+            return false;
+        } else if (username.value.length > 7) {
+            props.setNotificationText('username cannot be longer than 7 characters', false);
             return false;
         } else if (username.value.length < 3 || password.value.length < 3) {
             props.setNotificationText("Length of username or password can't be less than 3", false);
@@ -56,10 +59,10 @@ const RouteSignup = (props) => {
 
     return (
         <MasterContainer>
-            <Container>
+            <Container style={{minHeight:'83vh'}}>
                 <Grid>
                     <Grid.Row centered>
-                        <Grid textAlign={'center'} style={{height: '80vh'}} verticalAlign='middle'>
+                        <Grid textAlign={'center'} style={{height: '90vh'}} verticalAlign='middle'>
                             <Grid.Column style={{maxWidth: 450, minWidth: 300}}>
                                 <Header as={'h2'} color='teal' textAlign={'center'}>
                                     <Icon name={'signup'}/> Sign Up

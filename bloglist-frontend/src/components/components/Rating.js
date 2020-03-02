@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState} from 'react'
 
 import {Button,Modal, Rating} from 'semantic-ui-react'
 import {ac_Rating_Now, ac_setRated_OFF, ac_setRated_ON} from "../../reducers/ratingReducer";
@@ -6,8 +6,10 @@ import {connect} from "react-redux";
 
 const ModalForRating = (props) => {
 
+    const [rating, setRating] = useState(1);
+
     if(!props.rating.loadedOnce){
-        setTimeout(()=> props.setRatedON(),30000);
+        setTimeout(()=> props.setRatedON(),35000);
     }
 
     return (
@@ -15,7 +17,7 @@ const ModalForRating = (props) => {
             <Modal.Header>Feedback time!</Modal.Header>
             <Modal.Content>
                 <p>Please rate this website!</p>
-                <Rating icon='star' maxRating={5} size={'massive'} onRate={(event, {rating})=> props.rateNow(rating)} />
+                <Rating icon='star' maxRating={5} size={'massive'} onRate={(event, {rating})=> setRating(rating)} />
             </Modal.Content>
             <Modal.Actions>
             <Button negative onClick={(event) => props.setRatedOFF()}>close</Button>
@@ -24,7 +26,7 @@ const ModalForRating = (props) => {
                 icon='checkmark'
                 labelPosition='right'
                 content='Done!'
-                onClick={(event) => props.setRatedOFF()}
+                onClick={() => props.rateNow(rating)}
             />
             </Modal.Actions>
     </Modal>

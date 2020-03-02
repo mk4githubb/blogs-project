@@ -5,7 +5,6 @@ import store from "./store/store";
 import LayoutLogic from "./App";
 import './index.css'
 
-
 ReactDOM.render(<Provider store={store}>
     <LayoutLogic/>
 </Provider>, document.getElementById('root'));

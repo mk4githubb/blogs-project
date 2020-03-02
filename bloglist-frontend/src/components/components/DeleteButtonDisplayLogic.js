@@ -27,9 +27,12 @@ const DeleteButtonDisplay = (props) => {
 
     if (props.loggedInUser && props.blog && props.loggedInUser.username === props.blog.author.username) {
         return (
-            <Button icon onClick={deleteHandler}>
-                <Icon name={'delete'}/>
-                Delete blog
+            <Button negative onClick={deleteHandler} animated
+                    attached={'bottom'}>
+                <Button.Content visible>Delete Blog</Button.Content>
+                <Button.Content hidden>
+                    <Icon name='delete'/>
+                </Button.Content>
             </Button>
         )
     }
