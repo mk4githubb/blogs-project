@@ -14,7 +14,7 @@ const SingleBlogCard = (props) => {
             <Container style={{height: '78vh', marginTop: '2em'}}>
                 <Segment padded stacked textAlign={'left'}>
                     <Item style={{marginTop:'7px', marginBottom:'7px'}}>
-                        <Item.Image size='large' src={require('../../../resources/blogIcon.png')} style={{border:'2px solid red'}} />
+                        <Item.Image size='large' src={require('../../../resources/blogIcon.png')}/>
                         <Item.Content verticalAlign={'middle'}>
                             <Item.Header style={{'fontSize': '1.5em', marginTop:'1em'}}><Link to={`/blogs/${props.blog.id}`}>{props.blog.title}</Link></Item.Header>
                             <Item.Meta style={{'fontSize': '1.2em', marginTop:'0.5em'}}>by <Link to={`/users/${props.blog.author.id}`}>
