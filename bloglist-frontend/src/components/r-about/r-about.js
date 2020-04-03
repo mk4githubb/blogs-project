@@ -11,14 +11,14 @@ const About = (props) => {
 
     useEffect(() => {
         props.incrementPageViews();
-        window.scroll(0,0);
+        window.scroll(0, 0);
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    },[null]);
+    }, [null]);
 
     return (
         <MasterContainer>
             <NofiticationDisplayer/>
-            <Segment style={{minHeight:'83vh'}}>
+            <Segment style={{minHeight: '83vh'}}>
                 <Container>
                     <Grid stackable celled='internally'>
                         <Grid.Row width={8} style={{marginTop: '2em'}}>
@@ -35,7 +35,8 @@ const About = (props) => {
                             <Segment padded secondary>
                                 <Label attached='top'>What else?</Label>
                                 <Header as={'h2'} content={'ummm... What else would do you like to know?'}/>
-                                <Header as={'h3'} content={'Try deciphering the line below to find the hidden message!'}/>
+                                <Header as={'h3'}
+                                        content={'Try deciphering the line below to find the hidden message!'}/>
                                 <Container text>
                                     <Grid centered>
                                         <GridRow>

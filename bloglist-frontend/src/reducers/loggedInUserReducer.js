@@ -19,15 +19,14 @@ const loggedInUseReducer = (state = null, action) => {
 
 export const ac_setLoggedInUserFromLS = (data) => {
     return async dispatch => {
-        try{
+        try {
             dispatch({
                 type: 'setUser',
                 data: data
             });
 
             dispatch(ac_setNotification_Text(`Hello ${data.username}, Welcome back!`, true))
-        }
-        catch (e) {
+        } catch (e) {
             dispatch(ac_setNotification_Text('Please login in.', false))
         }
 
@@ -36,14 +35,13 @@ export const ac_setLoggedInUserFromLS = (data) => {
 
 export const ac_logout = () => {
     return async dispatch => {
-        try{
+        try {
             dispatch({
                 type: 'logout',
             });
 
             dispatch(ac_setNotification_Text('Logged Out Successfully.', true))
-        }
-        catch (e) {
+        } catch (e) {
             dispatch(ac_setNotification_Text('Logged Out Successfully.', false))
         }
 

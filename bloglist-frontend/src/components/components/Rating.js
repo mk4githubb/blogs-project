@@ -1,6 +1,6 @@
 import React, {useState} from 'react'
 
-import {Button,Modal, Rating} from 'semantic-ui-react'
+import {Button, Modal, Rating} from 'semantic-ui-react'
 import {ac_Rating_Now, ac_setRated_OFF, ac_setRated_ON} from "../../reducers/ratingReducer";
 import {connect} from "react-redux";
 
@@ -8,41 +8,42 @@ const ModalForRating = (props) => {
 
     const [rating, setRating] = useState(1);
 
-    if(!props.rating.loadedOnce){
-        setTimeout(()=> props.setRatedON(),35000);
+    if (!props.rating.loadedOnce) {
+        setTimeout(() => props.setRatedON(), 35000);
     }
 
     return (
-        <Modal size={'tiny'} centered closeIcon closeOnDocumentClick={true} open={props.rating.visible} onClose={(event) => props.setRatedOFF()}>
+        <Modal size={'tiny'} centered closeIcon closeOnDocumentClick={true} open={props.rating.visible}
+               onClose={(event) => props.setRatedOFF()}>
             <Modal.Header>Feedback time!</Modal.Header>
             <Modal.Content>
                 <p>Please rate this website!</p>
-                <Rating icon='star' maxRating={5} size={'massive'} onRate={(event, {rating})=> setRating(rating)} />
+                <Rating icon='star' maxRating={5} size={'massive'} onRate={(event, {rating}) => setRating(rating)}/>
             </Modal.Content>
             <Modal.Actions>
-            <Button negative onClick={(event) => props.setRatedOFF()}>close</Button>
-            <Button
-                positive
-                icon='checkmark'
-                labelPosition='right'
-                content='Done!'
-                onClick={() => props.rateNow(rating)}
-            />
+                <Button negative onClick={(event) => props.setRatedOFF()}>close</Button>
+                <Button
+                    positive
+                    icon='checkmark'
+                    labelPosition='right'
+                    content='Done!'
+                    onClick={() => props.rateNow(rating)}
+                />
             </Modal.Actions>
-    </Modal>
+        </Modal>
     );
 };
 
 const mapStateToprops = state => {
     return {
-        rating:state.rating
+        rating: state.rating
     }
 };
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        setRatedON:()=>dispatch(ac_setRated_ON()),
-        setRatedOFF:()=>dispatch(ac_setRated_OFF()),
+        setRatedON: () => dispatch(ac_setRated_ON()),
+        setRatedOFF: () => dispatch(ac_setRated_OFF()),
         rateNow: (rating) => dispatch(ac_Rating_Now(rating))
     }
 };

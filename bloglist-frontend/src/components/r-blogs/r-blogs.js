@@ -12,15 +12,15 @@ const RouteBlogs = (props) => {
 
     useEffect(() => {
         props.incrementPageViews();
-        window.scroll(0,0);
+        window.scroll(0, 0);
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    },[null]);
+    }, [null]);
 
     return (
         <MasterContainer>
             <Segment>
                 <NofiticationDisplayer/>
-                <Segment secondary style={{minHeight:'13vh'}}>
+                <Segment secondary style={{minHeight: '13vh'}}>
                     <Container>
                         <Header as={'h2'} content={'Search Blogs'} color={'blue'}/>
                         <Input icon={{name: 'search', circular: true, link: true}} placeholder='Search...'
@@ -28,7 +28,7 @@ const RouteBlogs = (props) => {
                                onChange={(event) => {
                                    props.setSearchText(event.target.value);
                                    setPage(1);
-                                    }
+                               }
                                }/>
                     </Container>
                 </Segment>

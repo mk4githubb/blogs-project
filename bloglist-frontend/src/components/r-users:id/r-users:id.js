@@ -12,9 +12,9 @@ const RoutesOneUser = (props) => {
 
     useEffect(() => {
         props.incrementPageViews();
-        window.scroll(0,0);
+        window.scroll(0, 0);
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    },[null]);
+    }, [null]);
 
     if (!props.user) {
         return null;
@@ -50,8 +50,9 @@ const RoutesOneUser = (props) => {
                 <Container style={{marginTop: '2em'}}>
                     <Header as='h1' icon={'user'} content={`User Profile`} color={'grey'}/>
                     <Divider/>
-                    <Header as={'h1'} color={'blue'}><Link to={`/users/${props.user.id}`}>{props.user.username}</Link></Header>
-                    <Container style={{minHeight:'70vh'}}>
+                    <Header as={'h1'} color={'blue'}><Link
+                        to={`/users/${props.user.id}`}>{props.user.username}</Link></Header>
+                    <Container style={{minHeight: '70vh'}}>
                         <Header as={'h2'} content={`Blogs by ${props.user.username}`} color={'grey'}/>
                         <List>
                             {listItems()}

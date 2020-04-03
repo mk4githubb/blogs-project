@@ -21,7 +21,7 @@ const DeleteButtonDisplay = (props) => {
         try {
             props.deleteBlog(config, props.blog.id, props.history);
         } catch (exception) {
-            props.setNotificationText('Error deleting blog',false);
+            props.setNotificationText('Error deleting blog', false);
         }
     };
 

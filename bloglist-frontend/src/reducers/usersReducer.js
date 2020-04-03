@@ -23,8 +23,8 @@ export const ac_initUsers = () => {
             })
         } catch (exception) {
             dispatch({
-                type:'setNotificationText',
-                data:'Error Connecting to database.'
+                type: 'setNotificationText',
+                data: 'Error Connecting to database.'
             })
         }
     }

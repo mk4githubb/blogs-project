@@ -18,7 +18,7 @@ const combinedReducer = combineReducers({
     users: usersReducer,
     userSearchText: userSearchTextReducer,
     pageViews: pageViewsReducer,
-    rating:ratingReducer
+    rating: ratingReducer
 });
 
 const store = createStore(combinedReducer, applyMiddleware(thunk));

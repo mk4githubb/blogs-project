@@ -18,9 +18,9 @@ const RouteSignup = (props) => {
 
     useEffect(() => {
         props.incrementPageViews();
-        window.scroll(0,0);
+        window.scroll(0, 0);
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    },[null]);
+    }, [null]);
 
     const inputValidator = () => {
         if (!username || username.value.length === 0 || !password || password.value.length === 0) {
@@ -59,7 +59,7 @@ const RouteSignup = (props) => {
 
     return (
         <MasterContainer>
-            <Container style={{minHeight:'83vh'}}>
+            <Container style={{minHeight: '83vh'}}>
                 <Grid>
                     <Grid.Row centered>
                         <Grid textAlign={'center'} style={{height: '90vh'}} verticalAlign='middle'>
@@ -108,7 +108,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        setNotificationText: (data,positive) => dispatch(ac_setNotification_Text(data,positive)),
+        setNotificationText: (data, positive) => dispatch(ac_setNotification_Text(data, positive)),
         createUser: (newUser, history) => dispatch(ac_createUser(newUser, history)),
         incrementPageViews: () => dispatch(ac_incrementPageViews())
     }

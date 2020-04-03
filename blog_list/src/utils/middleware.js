@@ -1,68 +1,60 @@
-
-const requestLogger = (request, response, next) =>{
-  console.log('Method:', request.method);
-  console.log('Path:', request.path);
-  console.log('Body:', request.body);
-  console.log('--------');
-  next();
+const requestLogger = (request, response, next) => {
+    console.log('Method:', request.method);
+    console.log('Path:', request.path);
+    console.log('Body:', request.body);
+    console.log('--------');
+    next();
 };
 
-const unknownEndpoint= (request, response, next) =>{
-  response.status(404).send({
-      'error':'Unknown endpoint'
-  })
+const unknownEndpoint = (request, response, next) => {
+    response.status(404).send({
+        'error': 'Unknown endpoint'
+    })
 };
 
-const errorHandler = (error, request, response, next) =>{
+const errorHandler = (error, request, response, next) => {
 
-    if (error.name === 'AuthenticationError'){
+    if (error.name === 'AuthenticationError') {
         response.status(401).send({
             'error': 'invalid username or password'
         })
-    }
-    else if (error.name === 'TokenError'){
+    } else if (error.name === 'TokenError') {
         response.status(401).send({
             'error': 'token missing or invalid'
         })
-    }
-    else if (error.name === 'JsonWebTokenError'){
+    } else if (error.name === 'JsonWebTokenError') {
         response.status(401).send({
             'error': 'token missing or invalid'
         })
-    }
-    else if (error.name === 'CastError' && error.kind === 'ObjectId'){
+    } else if (error.name === 'CastError' && error.kind === 'ObjectId') {
         response.status(400).send({
-            'error': 'malformatted Id'
+                'error': 'malformatted Id'
             }
         )
-    }
-    else if (error.name === 'ConnectionError'){
+    } else if (error.name === 'ConnectionError') {
         response.status(500).send({
             'error': 'Error Connecting to Database'
         })
-    }
-    else if( error.name ==='ValidationError'){
+    } else if (error.name === 'ValidationError') {
         response.status(400).send({
-            'error':'validation error'
+            'error': 'validation error'
         })
-    }
-    else if( error.message ==='incorrect credentials'){
+    } else if (error.message === 'incorrect credentials') {
         response.status(400).send({
-                'error':'validation error'
+            'error': 'validation error'
         })
     }
     next(error);
 };
 
-const tokenExtractor =(request, response, next) => {
-        const authorization = request.get('authorization');
-        if(authorization && authorization.toLowerCase().startsWith('bearer')){
-            request.token =  authorization.substring(7);
-        }
-        else {
-            request.token = null;
-        }
-        next();
+const tokenExtractor = (request, response, next) => {
+    const authorization = request.get('authorization');
+    if (authorization && authorization.toLowerCase().startsWith('bearer')) {
+        request.token = authorization.substring(7);
+    } else {
+        request.token = null;
+    }
+    next();
 };
 
 module.exports = {

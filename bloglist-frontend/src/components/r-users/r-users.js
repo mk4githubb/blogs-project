@@ -13,15 +13,15 @@ const RouteUsers = (props) => {
 
     useEffect(() => {
         props.incrementPageViews();
-        window.scroll(0,0);
+        window.scroll(0, 0);
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    },[null]);
+    }, [null]);
 
     return (
         <MasterContainer>
             <Segment>
                 <NofiticationDisplayer/>
-                <Segment secondary style={{minHeight:'13vh'}}>
+                <Segment secondary style={{minHeight: '13vh'}}>
                     <Container>
                         <Header as={'h2'} content={'Search Users'} color={'blue'}/>
                         <Input

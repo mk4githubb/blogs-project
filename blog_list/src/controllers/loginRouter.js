@@ -4,14 +4,14 @@ const bcrypt = require('bcrypt');
 const userTable = require('../models/usersSchema');
 const config = require('../utils/config');
 
-loginRouter.post('/', async (request , response , next) =>{
+loginRouter.post('/', async (request, response, next) => {
 
     const loginData = request.body;
-    const foundUser = await userTable.findOne({username : loginData.username});
+    const foundUser = await userTable.findOne({username: loginData.username});
 
     const isPasswordCorrect = foundUser === null ? false : await bcrypt.compare(loginData.password, foundUser.passwordHash);
 
-    if (!(foundUser && isPasswordCorrect)){
+    if (!(foundUser && isPasswordCorrect)) {
         return next(new Error('incorrect credentials'))
     }
 

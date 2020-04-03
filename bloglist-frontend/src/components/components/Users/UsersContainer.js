@@ -21,7 +21,7 @@ const UsersContainer = (props) => {
     if (props.users.length !== 0 && users.length === 0) {
         return (
             <Segment style={{height: '70vh'}}>
-                <Container text style={{marginTop:'2em'}}>
+                <Container text style={{marginTop: '2em'}}>
                     <Header as={'h2'} content={'No Such User'}/>
                 </Container>
             </Segment>

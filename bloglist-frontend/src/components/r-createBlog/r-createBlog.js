@@ -16,7 +16,7 @@ const RouteCreateBlog = (props) => {
 
     useEffect(() => {
         props.incrementPageViews();
-        window.scroll(0,0);
+        window.scroll(0, 0);
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [null]);
 
@@ -96,7 +96,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        setNotificationText: (text,positive) => dispatch(ac_setNotification_Text(text,positive)),
+        setNotificationText: (text, positive) => dispatch(ac_setNotification_Text(text, positive)),
         createBlog: (config, newBlog, history) => dispatch(ac_createBlog(config, newBlog, history)),
         incrementPageViews: () => dispatch(ac_incrementPageViews())
     }

@@ -3,8 +3,8 @@ export const ac_setNotification_Text = (text, positive) => {
         dispatch({
             type: 'setNotificationText',
             data: {
-                text:text,
-                positive:positive
+                text: text,
+                positive: positive
             }
         });
 

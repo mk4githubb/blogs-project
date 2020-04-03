@@ -1,1 +1,12 @@
-{"version":3,"sources":["index.css"],"names":[],"mappings":"AACA,UACI,kCACJ","file":"main.20475ada.chunk.css","sourcesContent":["\nhtml, body {\n    background-color: #252839 !important;\n}\n"]}
+{
+  "version": 3,
+  "sources": [
+    "index.css"
+  ],
+  "names": [],
+  "mappings": "AACA,UACI,kCACJ",
+  "file": "main.20475ada.chunk.css",
+  "sourcesContent": [
+    "\nhtml, body {\n    background-color: #252839 !important;\n}\n"
+  ]
+}

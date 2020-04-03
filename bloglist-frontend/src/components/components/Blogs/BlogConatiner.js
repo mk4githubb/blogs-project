@@ -1,11 +1,11 @@
 import React from 'react'
-import {Item, Container, Grid, GridRow, Header, Pagination, Segment} from "semantic-ui-react";
+import {Container, Grid, GridRow, Header, Item, Pagination, Segment} from "semantic-ui-react";
 import OneBlog from "./OneBlog";
 import {connect} from "react-redux";
 
 
 const BlogsContainer = (props) => {
-    const itemsPerPage = props.landingPage?5:8;
+    const itemsPerPage = props.landingPage ? 5 : 8;
     let blogs = props.blogs;
 
     if (props.searchText != null) {
@@ -21,19 +21,21 @@ const BlogsContainer = (props) => {
 
     if (props.blogs.length !== 0 && blogs.length === 0) {
         return (
-            <Segment style={{height: '70vh'}} >
-                <Container text style={{marginTop:'2em'}}>
+            <Segment style={{height: '70vh'}}>
+                <Container text style={{marginTop: '2em'}}>
                     <Header as={'h3'} content={'No Such blog'}/>
                 </Container>
             </Segment>
         )
-    };
+    }
+    ;
 
     return (
-        <Segment secondary style={props.landingPage?{minHeight: '40vh'}:{minHeight: '70vh'}} loading={!blogs || blogs.length === 0}>
+        <Segment secondary style={props.landingPage ? {minHeight: '40vh'} : {minHeight: '70vh'}}
+                 loading={!blogs || blogs.length === 0}>
             <Container>
-                <Item.Group relaxed divided >
-                    {PaginationArraySlicer().map(i => <OneBlog key={i.id} blog={i} />)}
+                <Item.Group relaxed divided>
+                    {PaginationArraySlicer().map(i => <OneBlog key={i.id} blog={i}/>)}
                 </Item.Group>
                 <Grid centered>
                     <GridRow>

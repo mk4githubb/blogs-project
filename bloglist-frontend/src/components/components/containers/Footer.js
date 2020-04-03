@@ -1,9 +1,9 @@
 import React from 'react'
 import {Container, Grid, Header, Icon, List, Segment} from "semantic-ui-react";
 
-const Footer = () =>{
+const Footer = () => {
 
-    return(
+    return (
         <Segment vertical>
             <Container>
                 <Grid divided stackable verticalAlign={'middle'} textAlign={'center'}>

@@ -17,9 +17,9 @@ const RouteLogin = (props) => {
 
     useEffect(() => {
         props.incrementPageViews();
-        window.scroll(0,0);
+        window.scroll(0, 0);
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    },[null]);
+    }, [null]);
 
     const handleSubmit = async (event) => {
         event.preventDefault();
@@ -55,7 +55,7 @@ const RouteLogin = (props) => {
 
     return (
         <MasterContainer>
-            <Container style={{minHeight:'83vh'}}>
+            <Container style={{minHeight: '83vh'}}>
                 <Grid inverted>
                     <Grid.Row centered>
                         <Grid textAlign={'center'} style={{height: '90vh'}} verticalAlign='middle'>
@@ -97,7 +97,7 @@ const RouteLogin = (props) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        setNotificationText: (data, positive) => dispatch(ac_setNotification_Text(data,positive)),
+        setNotificationText: (data, positive) => dispatch(ac_setNotification_Text(data, positive)),
         login: (data) => dispatch(ac_login(data)),
         incrementPageViews: () => dispatch(ac_incrementPageViews())
     }

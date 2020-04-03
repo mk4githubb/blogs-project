@@ -3,12 +3,11 @@ const ratingTable = require('../models/ratingSchema');
 
 ratingRouter.get('/', async (request, response, next) => {
 
-    try{
+    try {
         const foundRatings = await ratingTable.find({});
         const x = foundRatings.map(rating => rating.toJSON());
         response.status(200).send(x);
-    }
-    catch (exception) {
+    } catch (exception) {
         return next(new Error('ConnectionError'));
     }
 
@@ -16,21 +15,20 @@ ratingRouter.get('/', async (request, response, next) => {
 
 ratingRouter.post('/', async (request, response, next) => {
 
-    try{
+    try {
         const rating = request.body.rating;
         const ip = request.headers['x-forwarded-for'] || request.connection.remoteAddress;
 
         const newRating = new ratingTable({
-           rating: rating,
-           ip: ip
+            rating: rating,
+            ip: ip
         });
 
         await newRating.save();
         response.status(200).send(newRating.toJSON());
-    }
-    catch (exception) {
+    } catch (exception) {
         return next(new Error('ConnectionError'));
     }
 });
 
-module.exports =  ratingRouter;
+module.exports = ratingRouter;

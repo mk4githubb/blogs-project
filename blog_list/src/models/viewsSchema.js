@@ -1,10 +1,10 @@
 const mongoose = require('mongoose');
 
 const viewSchema = new mongoose.Schema({
-   pageViews:{
-       type: Number,
-       required: true
-   }
+    pageViews: {
+        type: Number,
+        required: true
+    }
 });
 
 viewSchema.set('toJSON', {

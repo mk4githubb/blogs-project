@@ -1,15 +1,5 @@
 import React, {useState} from 'react'
-import {
-    Grid,
-    GridRow,
-    Header,
-    Icon,
-    Image,
-    Menu,
-    Responsive,
-    Segment,
-    Sidebar,
-} from "semantic-ui-react";
+import {Grid, GridRow, Header, Icon, Image, Menu, Responsive, Segment, Sidebar,} from "semantic-ui-react";
 import {getWidth} from "./DesktopContainer";
 import {Link, withRouter} from "react-router-dom";
 import Footer from "./Footer";
