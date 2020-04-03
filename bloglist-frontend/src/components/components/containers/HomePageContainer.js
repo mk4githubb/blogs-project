@@ -4,7 +4,7 @@ import MobileHomePageContainer from "./MobileHomePageContainer";
 
 const MasterContainer = ({children}) => {
 
-    return(
+    return (
         <div>
             <DesktopContainer>{children}</DesktopContainer>
             <MobileHomePageContainer>{children}</MobileHomePageContainer>

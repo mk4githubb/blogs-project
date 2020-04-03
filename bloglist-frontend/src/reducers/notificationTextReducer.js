@@ -1,15 +1,17 @@
-
-export const ac_setNotification_Text =  (text) => {
+export const ac_setNotification_Text = (text, positive) => {
     return async dispatch => {
         dispatch({
             type: 'setNotificationText',
-            data:text
+            data: {
+                text: text,
+                positive: positive
+            }
         });
 
         setTimeout(() => dispatch({
             type: 'setNotificationText',
             data: null
-        }), 5000);
+        }), 2000);
     }
 };
 

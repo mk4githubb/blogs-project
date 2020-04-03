@@ -1,16 +1,15 @@
-
 const mongoose = require('mongoose');
 
 const blogSchema = new mongoose.Schema({
     title: {
-        type:String,
+        type: String,
         maxlength: 156,
         required: true
     },
-    text:{
-     type:String,
-     maxlength: 500,
-     required: true
+    text: {
+        type: String,
+        maxlength: 500,
+        required: true
     },
     likes: 0,
     author: {
@@ -21,7 +20,7 @@ const blogSchema = new mongoose.Schema({
 });
 
 blogSchema.set('toJSON', {
-    transform:(document, toReturn) =>{
+    transform: (document, toReturn) => {
         toReturn.id = document._id.toString();
         delete toReturn.__v;
         delete toReturn._id;

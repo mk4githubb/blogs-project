@@ -1,18 +1,20 @@
 import React from 'react'
-import {Statistic} from "semantic-ui-react";
+import {Responsive, Statistic} from "semantic-ui-react";
 import {connect} from "react-redux";
+import {getWidth} from "./containers/DesktopContainer";
 
 
 const MyStatistics = (props) => {
 
-    return(
-        <Statistic.Group inverted widths={3} style={{marginTop:'2em'}} size={'small'}>
+    return (
+        <Statistic.Group inverted widths={3} style={{marginTop: '2em'}}
+                         size={getWidth() > Responsive.onlyMobile.maxWidth ? 'small' : 'mini'}>
             <Statistic>
                 <Statistic.Value>{props.blogs.length}</Statistic.Value>
                 <Statistic.Label>Blogs</Statistic.Label>
             </Statistic>
             <Statistic>
-                <Statistic.Value>31,200</Statistic.Value>
+                <Statistic.Value>{props.pageViews}</Statistic.Value>
                 <Statistic.Label>Page Views</Statistic.Label>
             </Statistic>
             <Statistic>
@@ -23,10 +25,11 @@ const MyStatistics = (props) => {
     )
 };
 
-const mapStateToProps = (state)=>{
-    return{
-        blogs:state.blogs,
-        users:state.users
+const mapStateToProps = (state) => {
+    return {
+        blogs: state.blogs,
+        users: state.users,
+        pageViews: state.pageViews
     }
 };
 

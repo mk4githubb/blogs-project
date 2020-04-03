@@ -1,5 +1,4 @@
 import {ac_setNotification_Text} from "./notificationTextReducer";
-import {push} from 'react-router-redux'
 import useResource from "../hooks/useResources";
 
 const blogsReducer = (state = [], action) => {
@@ -9,7 +8,7 @@ const blogsReducer = (state = [], action) => {
             state = action.data;
             return state;
         case 'addBlog':
-            state = [...state, action.data]
+            state = [...state, action.data];
             return state;
         case 'likeBlog':
             const found = state.find(i => i.id === action.data);
@@ -22,84 +21,80 @@ const blogsReducer = (state = [], action) => {
     }
 };
 
-export const ac_InitBlogs =  ()=> {
+export const ac_InitBlogs = () => {
     return async (dispatch) => {
         try {
-            let db = useResource('http://localhost:3003/api/blogs');
+            let db = useResource('/api/blogs');
             const received = await db.getAll();
             const blogs = received.data;
-            dispatch ({
-                type:'initBlogs',
+            dispatch({
+                type: 'initBlogs',
                 data: blogs
             })
-        }
-        catch (exception) {
+        } catch (exception) {
             console.log('Error Getting Blogs');
-            return
+
         }
     }
 };
 
-export const ac_createBlog = (config, newBlog, history)=> {
+export const ac_createBlog = (config, newBlog, history) => {
 
     return async dispatch => {
-        try{
-            let db = useResource('http://localhost:3003/api/blogs');
+        try {
+            let db = useResource('/api/blogs');
             const receivedData = await db.post(newBlog, config);
 
             dispatch({
-                type:'addBlog',
+                type: 'addBlog',
                 data: receivedData.data
             });
 
-            dispatch(ac_setNotification_Text('Blog created. Taking you to your new blog'));
-            setTimeout(()=>history.push(`/blogs/${receivedData.data.id}`), 1500);
+            dispatch(ac_setNotification_Text('Blog created. Taking you to your new blog', true));
+            setTimeout(() => history.push(`/blogs/${receivedData.data.id}`), 2000);
 
-        }
-        catch (exception) {
-            dispatch(ac_setNotification_Text('Error creating the blog'));
+        } catch (exception) {
+            dispatch(ac_setNotification_Text('Error creating the blog', false));
         }
 
     }
 };
 
 
-export const ac_likeBlog =  (blog)=> {
+export const ac_likeBlog = (blog) => {
 
     return async dispatch => {
-        try{
-            let db = useResource('http://localhost:3003/api/blogs');
+        try {
+            let db = useResource('/api/blogs');
             const newBlog = {...blog, likes: blog.likes + 1};
-            db.put(blog.id, newBlog);
+            await db.put(blog.id, newBlog);
 
             dispatch({
-                type:'likeBlog',
+                type: 'likeBlog',
                 data: blog.id
             });
 
-            dispatch(ac_setNotification_Text('You liked the blog'));
-
         } catch (exception) {
-            dispatch(ac_setNotification_Text('Error liking blog'));
+            dispatch(ac_setNotification_Text('Error liking blog', false));
         }
     }
 };
 
-export const ac_deleteBlog = (config, id, history)=>{
+export const ac_deleteBlog = (config, id, history) => {
     return async dispatch => {
-        let db = useResource('http://localhost:3003/api/blogs');
+        let db = useResource('/api/blogs');
         try {
             await db.del(id, config);
-            dispatch(ac_setNotification_Text('Blog deleted. Taking you back to homepage.'));
-            setTimeout(()=> history.push('/home'),1000);
+            dispatch(ac_setNotification_Text('Blog deleted. Taking you back to homepage.', true));
+            setTimeout(() => history.push('/home'), 2000);
 
             dispatch({
-                type:'deleteBlog',
+                type: 'deleteBlog',
                 data: id
             });
 
-        }catch (exception) {
-           dispatch(ac_setNotification_Text('Error deleting blog'));
+        } catch (exception) {
+            dispatch(ac_setNotification_Text('Error deleting blog', false));
         }
     }
 };
